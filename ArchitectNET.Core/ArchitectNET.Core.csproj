@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4D00CD91-01D2-4415-924C-B6D56FF2D186}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ArchitectNET</RootNamespace>
+    <AssemblyName>ArchitectNET.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core.Collections.Support\DictionaryMap.cs" />
+    <Compile Include="Core.Collections.Support\HashSetCollection.cs" />
+    <Compile Include="Core.Collections.Support\ListCollection.cs" />
+    <Compile Include="Core.Collections\IFixedCollection.cs" />
+    <Compile Include="Core.Collections\IFixedList.cs" />
+    <Compile Include="Core.Collections\IFixedMap.cs" />
+    <Compile Include="Core.Collections\IVolatileCollection.cs" />
+    <Compile Include="Core.Collections\IVolatileList.cs" />
+    <Compile Include="Core.Collections\IVolatileMap.cs" />
+    <Compile Include="Core.Collections\_Extensions_.FixedMap.cs" />
+    <Compile Include="Core.Localization.Support\Locale.cs" />
+    <Compile Include="Core.Localization.Support\ObjectResource.cs" />
+    <Compile Include="Core.Localization.Support\ResourceManagerLocalizer.cs" />
+    <Compile Include="Core.Localization.Support\ResourceType.cs" />
+    <Compile Include="Core.Localization.Support\PlainTextResource.cs" />
+    <Compile Include="Core.Localization\ILocale.cs" />
+    <Compile Include="Core.Localization\ILocalizer.cs" />
+    <Compile Include="Core.Localization\IResource.cs" />
+    <Compile Include="Core.Localization\IResourceType.cs" />
+    <Compile Include="Core.Localization\_Extensions_.Localizer.cs" />
+    <Compile Include="Core.Localization\_Extensions_.Resource.cs" />
+    <Compile Include="Core._Internal_\Resources.cs" />
+    <Compile Include="Core\ContentType.cs" />
+    <Compile Include="Core\Guard.cs" />
+    <Compile Include="Core\ID.cs" />
+    <Compile Include="Core\IHasAlias.cs" />
+    <Compile Include="Core\IHasID.cs" />
+    <Compile Include="Core\IHasOwner.cs" />
+    <Compile Include="Core\IMetadata.cs" />
+    <Compile Include="Core\InvariantString.cs" />
+    <Compile Include="Core\ISynchronizable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Core._Resources_\!.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core.Support\" />
+    <Folder Include="Core._Assets_\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

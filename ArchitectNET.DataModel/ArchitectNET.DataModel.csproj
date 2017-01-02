@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D5F02B13-5F7D-4178-A5CB-E8E7D7AF6912}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ArchitectNET</RootNamespace>
+    <AssemblyName>ArchitectNET.DataModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataModel.Support\DomainMemberClass.cs" />
+    <Compile Include="DataModel.Support\DomainModelMemberClass.cs" />
+    <Compile Include="DataModel.Support\DomainRole.cs" />
+    <Compile Include="DataModel.Support\LiteralMemberClass.cs" />
+    <Compile Include="DataModel.Support\QueryMemberClass.cs" />
+    <Compile Include="DataModel.Support\TypeMemberClass.cs" />
+    <Compile Include="DataModel._Internal_\Resources.cs" />
+    <Compile Include="DataModel\DomainMemberRef.cs" />
+    <Compile Include="DataModel\DomainMemberRefKind.cs" />
+    <Compile Include="DataModel\IDomainMember.cs" />
+    <Compile Include="DataModel\IDomainMemberClass.cs" />
+    <Compile Include="DataModel\IDomainMemberTagCollection.cs" />
+    <Compile Include="DataModel\IDomainModel.cs" />
+    <Compile Include="DataModel\IDomainModelAware.cs" />
+    <Compile Include="DataModel\IDomainResolver.cs" />
+    <Compile Include="DataModel\IDomainRole.cs" />
+    <Compile Include="DataModel\ILiteral.cs" />
+    <Compile Include="DataModel\IQuery.cs" />
+    <Compile Include="DataModel\IType.cs" />
+    <Compile Include="DataModel\ITypeSupertypeCollection.cs" />
+    <Compile Include="DataModel\_Extensions_.DomainMember.cs" />
+    <Compile Include="DataModel\_Extensions_.DomainMemberClass.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataModel._Resources_\!.resx" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ArchitectNET.Core\ArchitectNET.Core.csproj">
+      <Project>{4d00cd91-01d2-4415-924c-b6d56ff2d186}</Project>
+      <Name>ArchitectNET.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
