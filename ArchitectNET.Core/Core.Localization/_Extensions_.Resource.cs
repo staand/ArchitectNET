@@ -14,5 +14,5 @@ namespace ArchitectNET.Core.Localization
                 return textResource.Text;
             throw new Exception(Resources.FormatString("7AE394F5-E90B-4074-A269-169194AE9244", resource.Type));
         }
-    }
+    } 
 }
