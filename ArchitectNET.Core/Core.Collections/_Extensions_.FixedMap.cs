@@ -4,7 +4,7 @@
     {
         public static bool ContainsKey<TKey, TValue>(this IFixedMap<TKey, TValue> map, TKey key)
         {
-            Guard.ArgumentNotNull(key, "key");
+            Guard.ArgumentNotNull(key, nameof(key));
             TValue value;
             return map.TryGetValue(key, out value);
         }

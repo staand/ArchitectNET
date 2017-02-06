@@ -19,21 +19,24 @@ namespace ArchitectNET.Core.Collections.Support
         {
         }
 
-        int IFixedCollection<TItem>.Count
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            get { return Count; }
+            return GetEnumerator();
         }
 
-        TItem IVolatileList<TItem>.this[int index]
+        IEnumerator<TItem> IEnumerable<TItem>.GetEnumerator()
         {
-            get { return this[index]; }
-            set { this[index] = value; }
+            return GetEnumerator();
         }
 
-        TItem IFixedList<TItem>.this[int index]
+        bool IFixedCollection<TItem>.Contains(TItem item)
         {
-            get { return this[index]; }
+            return Contains(item);
         }
+
+        int IFixedCollection<TItem>.Count => Count;
+
+        TItem IFixedList<TItem>.this[int index] => this[index];
 
         bool IVolatileCollection<TItem>.Add(TItem item)
         {
@@ -46,19 +49,9 @@ namespace ArchitectNET.Core.Collections.Support
             Clear();
         }
 
-        bool IFixedCollection<TItem>.Contains(TItem item)
+        bool IVolatileCollection<TItem>.Remove(TItem item)
         {
-            return Contains(item);
-        }
-
-        IEnumerator<TItem> IEnumerable<TItem>.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
+            return Remove(item);
         }
 
         bool IVolatileList<TItem>.InsertAt(int index, TItem item)
@@ -67,9 +60,10 @@ namespace ArchitectNET.Core.Collections.Support
             return true;
         }
 
-        bool IVolatileCollection<TItem>.Remove(TItem item)
+        TItem IVolatileList<TItem>.this[int index]
         {
-            return Remove(item);
+            get { return this[index]; }
+            set { this[index] = value; }
         }
 
         TItem IVolatileList<TItem>.RemoveAt(int index)

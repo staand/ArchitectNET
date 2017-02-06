@@ -33,11 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core.Collections.Support\DictionaryMap.cs" />
@@ -50,6 +45,44 @@
     <Compile Include="Core.Collections\IVolatileList.cs" />
     <Compile Include="Core.Collections\IVolatileMap.cs" />
     <Compile Include="Core.Collections\_Extensions_.FixedMap.cs" />
+    <Compile Include="Core.Dynamic.Support\AssemblyObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\ConstructorObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\DynamicObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\EventObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\FieldObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\MemberObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\MethodObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\ModuleObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\DynamicSystemObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\ParameterObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\PropertyObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\TypeObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Support\TypeParameterObjectCategory.cs" />
+    <Compile Include="Core.Dynamic\IAssembly.cs" />
+    <Compile Include="Core.Dynamic\IAssemblyModuleCollection.cs" />
+    <Compile Include="Core.Dynamic\IAttributedObject.cs" />
+    <Compile Include="Core.Dynamic\IConstructor.cs" />
+    <Compile Include="Core.Dynamic\IDynamicObject.cs" />
+    <Compile Include="Core.Dynamic\IDynamicObjectCategory.cs" />
+    <Compile Include="Core.Dynamic\IDynamicObjectProvider.cs" />
+    <Compile Include="Core.Dynamic\IDynamicSystem.cs" />
+    <Compile Include="Core.Dynamic\IDynamicSystemAware.cs" />
+    <Compile Include="Core.Dynamic\IEvent.cs" />
+    <Compile Include="Core.Dynamic\IField.cs" />
+    <Compile Include="Core.Dynamic\IGenericMember.cs" />
+    <Compile Include="Core.Dynamic\IMemberTypeArgumentCollection.cs" />
+    <Compile Include="Core.Dynamic\IObjectAttributeCollection.cs" />
+    <Compile Include="Core.Dynamic\IReturningInvocableMember.cs" />
+    <Compile Include="Core.Dynamic\ITypedObject.cs" />
+    <Compile Include="Core.Dynamic\IInvocableMember.cs" />
+    <Compile Include="Core.Dynamic\IMember.cs" />
+    <Compile Include="Core.Dynamic\IMemberParameterCollection.cs" />
+    <Compile Include="Core.Dynamic\IMethod.cs" />
+    <Compile Include="Core.Dynamic\IModule.cs" />
+    <Compile Include="Core.Dynamic\IParameter.cs" />
+    <Compile Include="Core.Dynamic\IProperty.cs" />
+    <Compile Include="Core.Dynamic\IType.cs" />
+    <Compile Include="Core.Dynamic\ITypeParameter.cs" />
     <Compile Include="Core.Localization.Support\Locale.cs" />
     <Compile Include="Core.Localization.Support\ObjectResource.cs" />
     <Compile Include="Core.Localization.Support\ResourceManagerLocalizer.cs" />
@@ -67,14 +100,17 @@
     <Compile Include="Core\ID.cs" />
     <Compile Include="Core\IHasAlias.cs" />
     <Compile Include="Core\IHasID.cs" />
+    <Compile Include="Core\IHasName.cs" />
     <Compile Include="Core\IHasOwner.cs" />
     <Compile Include="Core\IMetadata.cs" />
-    <Compile Include="Core\InvariantString.cs" />
+    <Compile Include="Core\InsensitiveString.cs" />
     <Compile Include="Core\ISynchronizable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Core._Resources_\!.resx" />
+    <EmbeddedResource Include="Core._Resources_\!.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core.Support\" />

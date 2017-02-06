@@ -10,24 +10,18 @@ namespace ArchitectNET.Core.Localization.Support
 
         public PlainTextResource(string text)
         {
-            Guard.ArgumentNotNull(text, "text");
+            Guard.ArgumentNotNull(text, nameof(text));
             _text = text;
         }
 
-        public string Text
-        {
-            get { return _text; }
-        }
-
-        public IResourceType Type
-        {
-            get { return ResourceType.PlainText; }
-        }
+        public string Text => _text;
 
         public Stream OpenStream()
         {
             throw new Exception(Resources.GetString("89BB995E-A0D9-41DF-8303-C15EBECAA11D"));
         }
+
+        public IResourceType Type => ResourceType.PlainText;
 
         public override string ToString()
         {

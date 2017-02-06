@@ -5,10 +5,22 @@ namespace ArchitectNET.Core.Collections.Support
 {
     public class HashSetCollection<TItem> : HashSet<TItem>, IVolatileCollection<TItem>
     {
-        int IFixedCollection<TItem>.Count
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            get { return Count; }
+            return GetEnumerator();
         }
+
+        IEnumerator<TItem> IEnumerable<TItem>.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        bool IFixedCollection<TItem>.Contains(TItem item)
+        {
+            return Contains(item);
+        }
+
+        int IFixedCollection<TItem>.Count => Count;
 
         bool IVolatileCollection<TItem>.Add(TItem item)
         {
@@ -18,21 +30,6 @@ namespace ArchitectNET.Core.Collections.Support
         void IVolatileCollection<TItem>.Clear()
         {
             Clear();
-        }
-
-        bool IFixedCollection<TItem>.Contains(TItem item)
-        {
-            return Contains(item);
-        }
-
-        IEnumerator<TItem> IEnumerable<TItem>.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
 
         bool IVolatileCollection<TItem>.Remove(TItem item)

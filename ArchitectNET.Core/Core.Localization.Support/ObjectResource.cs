@@ -13,20 +13,14 @@ namespace ArchitectNET.Core.Localization.Support
             _object = @object;
         }
 
-        public object Object
-        {
-            get { return _object; }
-        }
-
-        public IResourceType Type
-        {
-            get { return ResourceType.Object; }
-        }
+        public object Object => _object;
 
         public Stream OpenStream()
         {
             throw new Exception(Resources.GetString("45303E2B-ADA2-4F3A-B0BA-050748ED0273"));
         }
+
+        public IResourceType Type => ResourceType.Object;
 
         public override string ToString()
         {

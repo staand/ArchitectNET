@@ -3,13 +3,13 @@ using ArchitectNET.Core._Internal_;
 
 namespace ArchitectNET.Core
 {
-    public struct ID : IEquatable<ID>
+    public struct ID : IEquatable<ID>, IFormattable
     {
         private static readonly Type _byteType;
         private static readonly Type _guidType;
         private static readonly Type _idType;
+        private static readonly Type _insensitiveStringType;
         private static readonly Type _intType;
-        private static readonly Type _invariantStringType;
         private static readonly Type _longType;
         private static readonly Type _ordinalStringType;
         private readonly object _value;
@@ -22,7 +22,7 @@ namespace ArchitectNET.Core
             _intType = typeof(int);
             _longType = typeof(long);
             _ordinalStringType = typeof(string);
-            _invariantStringType = typeof(InvariantString);
+            _insensitiveStringType = typeof(InsensitiveString);
         }
 
         public ID(byte byteValue)
@@ -30,9 +30,24 @@ namespace ArchitectNET.Core
             _value = byteValue;
         }
 
+        public ID(byte? nullableByteValue)
+        {
+            _value = nullableByteValue;
+        }
+
+        public ID(int? nullableIntValue)
+        {
+            _value = nullableIntValue;
+        }
+
         public ID(int intValue)
         {
             _value = intValue;
+        }
+
+        public ID(long? nullableLongValue)
+        {
+            _value = nullableLongValue;
         }
 
         public ID(long longValue)
@@ -42,14 +57,17 @@ namespace ArchitectNET.Core
 
         public ID(string ordinalStringValue)
         {
-            Guard.ArgumentNotNull(ordinalStringValue, "ordinalStringValue");
             _value = ordinalStringValue;
         }
 
-        public ID(InvariantString invariantStringValue)
+        public ID(InsensitiveString insensitiveStringValue)
         {
-            Guard.ArgumentNotNull(invariantStringValue, "invariantStringValue");
-            _value = invariantStringValue;
+            _value = insensitiveStringValue;
+        }
+
+        public ID(Guid? nullableGuidValue)
+        {
+            _value = nullableGuidValue;
         }
 
         public ID(Guid guidValue)
@@ -57,9 +75,110 @@ namespace ArchitectNET.Core
             _value = guidValue;
         }
 
-        public static ID Empty
+        public static ID Empty => new ID();
+
+        public static ID ByValue(object value)
         {
-            get { return new ID(); }
+            if (value == null)
+                return new ID();
+            ID id;
+            if (TryGetByValue(value, out id))
+                return id;
+            throw new Exception(Resources.FormatString("FAB8606C-BB55-4B6C-83D2-8929696A4A0C", value, value.GetType()));
+        }
+
+        public static ID InsensitiveOf(string stringValue)
+        {
+            return new ID(new InsensitiveString(stringValue));
+        }
+
+        public static bool operator ==(ID id1, ID id2)
+        {
+            return id1.Equals(id2);
+        }
+
+        public static implicit operator ID(byte? nullableByteValue)
+        {
+            return new ID(nullableByteValue);
+        }
+
+        public static implicit operator ID(byte byteValue)
+        {
+            return new ID(byteValue);
+        }
+
+        public static implicit operator ID(int? nullableIntValue)
+        {
+            return new ID(nullableIntValue);
+        }
+
+        public static implicit operator ID(int intValue)
+        {
+            return new ID(intValue);
+        }
+
+        public static implicit operator ID(long? nullableLongValue)
+        {
+            return new ID(nullableLongValue);
+        }
+
+        public static implicit operator ID(long longValue)
+        {
+            return new ID(longValue);
+        }
+
+        public static implicit operator ID(string ordinalStringValue)
+        {
+            if (ordinalStringValue == null)
+                return new ID();
+            return new ID(ordinalStringValue);
+        }
+
+        public static implicit operator ID(InsensitiveString insensitiveStringValue)
+        {
+            if (insensitiveStringValue == null)
+                return new ID();
+            return new ID(insensitiveStringValue);
+        }
+
+        public static implicit operator ID(Guid? nullableGuidValue)
+        {
+            return new ID(nullableGuidValue);
+        }
+
+        public static implicit operator ID(Guid guidValue)
+        {
+            return new ID(guidValue);
+        }
+
+        public static bool operator !=(ID id1, ID id2)
+        {
+            return !id1.Equals(id2);
+        }
+
+        public static bool TryGetByValue(object value, out ID id)
+        {
+            id = new ID();
+            if (value == null)
+                return true;
+            var valueType = value.GetType();
+            if (ReferenceEquals(valueType, _idType))
+                id = (ID) value;
+            else if (ReferenceEquals(valueType, _guidType))
+                id = new ID((Guid) value);
+            else if (ReferenceEquals(valueType, _byteType))
+                id = new ID((byte) value);
+            else if (ReferenceEquals(valueType, _ordinalStringType))
+                id = new ID((string) value);
+            else if (ReferenceEquals(valueType, _intType))
+                id = new ID((int) value);
+            else if (ReferenceEquals(valueType, _longType))
+                id = new ID((long) value);
+            else if (ReferenceEquals(valueType, _insensitiveStringType))
+                id = new ID((InsensitiveString) value);
+            else
+                return false;
+            return true;
         }
 
         public bool IsAnyString
@@ -71,7 +190,7 @@ namespace ArchitectNET.Core
                     return false;
                 var valueType = value.GetType();
                 return ReferenceEquals(valueType, _ordinalStringType)
-                       || ReferenceEquals(valueType, _invariantStringType);
+                       || ReferenceEquals(valueType, _insensitiveStringType);
             }
         }
 
@@ -84,10 +203,7 @@ namespace ArchitectNET.Core
             }
         }
 
-        public bool IsEmpty
-        {
-            get { return _value == null; }
-        }
+        public bool IsEmpty => _value == null;
 
         public bool IsGuid
         {
@@ -98,21 +214,21 @@ namespace ArchitectNET.Core
             }
         }
 
+        public bool IsInsensitiveString
+        {
+            get
+            {
+                var value = _value;
+                return value != null && ReferenceEquals(value.GetType(), _insensitiveStringType);
+            }
+        }
+
         public bool IsInt
         {
             get
             {
                 var value = _value;
                 return value != null && ReferenceEquals(value.GetType(), _intType);
-            }
-        }
-
-        public bool IsInvariantString
-        {
-            get
-            {
-                var value = _value;
-                return value != null && ReferenceEquals(value.GetType(), _invariantStringType);
             }
         }
 
@@ -133,8 +249,8 @@ namespace ArchitectNET.Core
                 if (value == null)
                     return false;
                 var valueType = value.GetType();
-                return ReferenceEquals(valueType, _byteType)
-                       || ReferenceEquals(valueType, _intType)
+                return ReferenceEquals(valueType, _intType)
+                       || ReferenceEquals(valueType, _byteType)
                        || ReferenceEquals(valueType, _longType);
             }
         }
@@ -148,45 +264,7 @@ namespace ArchitectNET.Core
             }
         }
 
-        public object Value
-        {
-            get { return _value; }
-        }
-
-        public static ID ByValue(object value)
-        {
-            if (value == null)
-                return new ID();
-            ID id;
-            if (TryGetByValue(value, out id))
-                return id;
-            throw new Exception(Resources.FormatString("FAB8606C-BB55-4B6C-83D2-8929696A4A0C", value, value.GetType()));
-        }
-
-        public static bool TryGetByValue(object value, out ID id)
-        {
-            id = new ID();
-            if (value == null)
-                return true;
-            var valueType = value.GetType();
-            if (ReferenceEquals(valueType, _idType))
-                id = (ID)value;
-            else if (ReferenceEquals(valueType, _guidType))
-                id = new ID((Guid)value);
-            else if (ReferenceEquals(valueType, _byteType))
-                id = new ID((byte)value);
-            else if (ReferenceEquals(valueType, _ordinalStringType))
-                id = new ID((string)value);
-            else if (ReferenceEquals(valueType, _intType))
-                id = new ID((int)value);
-            else if (ReferenceEquals(valueType, _longType))
-                id = new ID((long)value);
-            else if (ReferenceEquals(valueType, _invariantStringType))
-                id = new ID((InvariantString)value);
-            else
-                return false;
-            return true;
-        }
+        public object Value => _value;
 
         public bool Equals(ID otherID)
         {
@@ -199,53 +277,43 @@ namespace ArchitectNET.Core
             if (ReferenceEquals(value, otherValue))
                 return true;
             var valueType = value.GetType();
-            var otherValueType = value.GetType();
-            return ReferenceEquals(valueType, otherValueType)
-                   && value.Equals(otherValue);
+            var otherValueType = otherValue.GetType();
+            if (ReferenceEquals(valueType, otherValueType))
+                return value.Equals(otherValue);
+            var isOrdinalString = ReferenceEquals(valueType, _ordinalStringType);
+            var isInsensitiveString = ReferenceEquals(valueType, _insensitiveStringType);
+            var isAnyString = isOrdinalString || isInsensitiveString;
+            var isOtherOrdinalString = ReferenceEquals(otherValueType, _ordinalStringType);
+            var isOtherInsensitiveString = ReferenceEquals(otherValueType, _insensitiveStringType);
+            var isOtherAnyString = isOtherOrdinalString || isOtherInsensitiveString;
+            if (isAnyString != isOtherAnyString)
+                return false;
+            if (isAnyString)
+            {
+                return isInsensitiveString
+                           ? value.Equals(otherValue)
+                           : otherValue.Equals(value);
+            }
+            var isNumeric = ReferenceEquals(valueType, _intType)
+                            || ReferenceEquals(valueType, _byteType)
+                            || ReferenceEquals(valueType, _longType);
+            var isOtherNumeric = ReferenceEquals(otherValueType, _intType)
+                                 || ReferenceEquals(otherValueType, _byteType)
+                                 || ReferenceEquals(otherValueType, _longType);
+            if (!isNumeric || !isOtherNumeric)
+                return false;
+            return Convert.ToInt64(value) == Convert.ToInt64(otherValue);
         }
 
-        public static bool operator ==(ID id1, ID id2)
+        public string ToString(string format, IFormatProvider formatProvider)
         {
-            return id1.Equals(id2);
-        }
-
-        public static implicit operator ID(byte byteValue)
-        {
-            return new ID(byteValue);
-        }
-
-        public static implicit operator ID(int intValue)
-        {
-            return new ID(intValue);
-        }
-
-        public static implicit operator ID(long longValue)
-        {
-            return new ID(longValue);
-        }
-
-        public static implicit operator ID(string ordinalStringValue)
-        {
-            if (ordinalStringValue == null)
-                return new ID();
-            return new ID(ordinalStringValue);
-        }
-
-        public static implicit operator ID(InvariantString invariantStringValue)
-        {
-            if (invariantStringValue == null)
-                return new ID();
-            return new ID(invariantStringValue);
-        }
-
-        public static implicit operator ID(Guid guidValue)
-        {
-            return new ID(guidValue);
-        }
-
-        public static bool operator !=(ID id1, ID id2)
-        {
-            return !id1.Equals(id2);
+            var value = _value;
+            if (value == null || string.IsNullOrWhiteSpace(format))
+                return ToString();
+            var formattableValue = value as IFormattable;
+            if (formattableValue == null)
+                return ToString();
+            return formattableValue.ToString(format, formatProvider);
         }
 
         public override bool Equals(object otherObject)
@@ -278,7 +346,7 @@ namespace ArchitectNET.Core
             if (value == null)
                 return null;
             return value as string
-                   ?? value as InvariantString;
+                   ?? value as InsensitiveString;
         }
     }
 }

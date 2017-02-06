@@ -8,13 +8,8 @@ namespace ArchitectNET.DataModel.Support
 
         public DomainRole(string alias)
         {
-            Guard.ArgumentNotNull(alias, "alias");
+            Guard.ArgumentNotNull(alias, nameof(alias));
             _alias = alias;
-        }
-
-        public string Alias
-        {
-            get { return _alias; }
         }
 
         public bool Equals(IDomainRole otherRole)
@@ -22,5 +17,7 @@ namespace ArchitectNET.DataModel.Support
             return otherRole != null
                    && _alias == otherRole.Alias;
         }
+
+        public string Alias => _alias;
     }
 }

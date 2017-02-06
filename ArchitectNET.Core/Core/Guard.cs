@@ -16,11 +16,14 @@ namespace ArchitectNET.Core
             if (callerFrame == null)
             {
                 throw new ArgumentNullException(parameterName,
-                    Resources.FormatString("17CEEEC2-89D6-461F-A877-A2C7A25182E6", parameterName));
+                                                Resources.FormatString("17CEEEC2-89D6-461F-A877-A2C7A25182E6",
+                                                                       parameterName));
             }
             var targetMethod = callerFrame.GetMethod();
             throw new ArgumentNullException(parameterName,
-                Resources.FormatString("535A5B99-6F4C-4C39-B9EA-692A52369ED4", parameterName, targetMethod));
+                                            Resources.FormatString("535A5B99-6F4C-4C39-B9EA-692A52369ED4",
+                                                                   parameterName,
+                                                                   targetMethod));
         }
     }
 }

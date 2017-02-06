@@ -157,6 +157,6 @@
     <value>Value "{0}" of runtime type "{1}" can't be treated as ID</value>
   </data>
   <data name="FBD8C857-97DE-4761-9E27-424465171F12" xml:space="preserve">
-    <value>Can't compare invariant string with an object of runtime type "{0}"</value>
+    <value>Can't compare case-insensitive string with an object of runtime type "{0}"</value>
   </data>
 </root>

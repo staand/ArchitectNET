@@ -13,7 +13,7 @@ namespace ArchitectNET.Core.Localization
 
         public static IResource GetResource(this ILocalizer localizer, ID resourceID, ILocale locale = null)
         {
-            Guard.ArgumentNotNull(localizer, "localizer");
+            Guard.ArgumentNotNull(localizer, nameof(localizer));
             var resource = localizer.TryGetResource(resourceID, locale);
             if (resource != null)
                 return resource;

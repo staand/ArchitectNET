@@ -7,26 +7,18 @@ namespace ArchitectNET.Core.Localization.Support
         private static readonly Locale _invariant;
         private readonly CultureInfo _culture;
 
+        public Locale(CultureInfo culture)
+        {
+            Guard.ArgumentNotNull(culture, nameof(culture));
+            _culture = culture;
+        }
+
         static Locale()
         {
             _invariant = new Locale(CultureInfo.InvariantCulture);
         }
 
-        public Locale(CultureInfo culture)
-        {
-            Guard.ArgumentNotNull(culture, "culture");
-            _culture = culture;
-        }
-
-        public static Locale Invariant
-        {
-            get { return _invariant; }
-        }
-
-        public CultureInfo Culture
-        {
-            get { return _culture; }
-        }
+        public static Locale Invariant => _invariant;
 
         public bool Equals(ILocale otherLocale)
         {
@@ -35,6 +27,8 @@ namespace ArchitectNET.Core.Localization.Support
             return otherLocale != null
                    && otherLocale.Culture.Equals(_culture);
         }
+
+        public CultureInfo Culture => _culture;
 
         public override bool Equals(object otherObject)
         {

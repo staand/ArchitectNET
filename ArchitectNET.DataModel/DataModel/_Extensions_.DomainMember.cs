@@ -7,7 +7,7 @@ namespace ArchitectNET.DataModel
     {
         public static bool IsDomainModel(this IDomainMember member)
         {
-            Guard.ArgumentNotNull(member, "member");
+            Guard.ArgumentNotNull(member, nameof(member));
             var domainModelClass = DomainMemberClass.DomainModel;
             var memberClass = member.Class;
             return ReferenceEquals(domainModelClass, memberClass)
@@ -16,7 +16,7 @@ namespace ArchitectNET.DataModel
 
         public static bool IsLiteral(this IDomainMember member)
         {
-            Guard.ArgumentNotNull(member, "member");
+            Guard.ArgumentNotNull(member, nameof(member));
             var literalClass = DomainMemberClass.Literal;
             var memberClass = member.Class;
             return ReferenceEquals(literalClass, memberClass)
@@ -25,7 +25,7 @@ namespace ArchitectNET.DataModel
 
         public static bool IsQuery(this IDomainMember member)
         {
-            Guard.ArgumentNotNull(member, "member");
+            Guard.ArgumentNotNull(member, nameof(member));
             var queryClass = DomainMemberClass.Query;
             var memberClass = member.Class;
             return ReferenceEquals(queryClass, memberClass)
@@ -34,7 +34,7 @@ namespace ArchitectNET.DataModel
 
         public static bool IsType(this IDomainMember member)
         {
-            Guard.ArgumentNotNull(member, "member");
+            Guard.ArgumentNotNull(member, nameof(member));
             var typeClass = DomainMemberClass.Type;
             var memberClass = member.Class;
             return ReferenceEquals(typeClass, memberClass)

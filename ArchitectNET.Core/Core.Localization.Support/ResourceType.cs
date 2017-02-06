@@ -20,6 +20,11 @@
         private static readonly ResourceType _zip;
         private readonly ContentType _contentType;
 
+        public ResourceType(ContentType contentType)
+        {
+            _contentType = contentType;
+        }
+
         static ResourceType()
         {
             _bitmap = new ResourceType(ContentType.Bitmap);
@@ -40,95 +45,37 @@
             _zip = new ResourceType(ContentType.ZIP);
         }
 
-        public ResourceType(ContentType contentType)
-        {
-            _contentType = contentType;
-        }
+        public static ResourceType Bitmap => _bitmap;
 
-        public static ResourceType Bitmap
-        {
-            get { return _bitmap; }
-        }
+        public static ResourceType GIF => _gif;
 
-        public static ResourceType GIF
-        {
-            get { return _gif; }
-        }
+        public static ResourceType GZIP => _gzip;
 
-        public static ResourceType GZIP
-        {
-            get { return _gzip; }
-        }
+        public static ResourceType Icon => _icon;
 
-        public static ResourceType Icon
-        {
-            get { return _icon; }
-        }
+        public static ResourceType JPEG => _jpeg;
 
-        public static ResourceType JPEG
-        {
-            get { return _jpeg; }
-        }
+        public static ResourceType MP3 => _mp3;
 
-        public static ResourceType MP3
-        {
-            get { return _mp3; }
-        }
+        public static ResourceType Object => _object;
 
-        public static ResourceType Object
-        {
-            get { return _object; }
-        }
+        public static ResourceType OGG => _ogg;
 
-        public static ResourceType OGG
-        {
-            get { return _ogg; }
-        }
+        public static ResourceType PDF => _pdf;
 
-        public static ResourceType PDF
-        {
-            get { return _pdf; }
-        }
+        public static ResourceType PlainText => _plainText;
 
-        public static ResourceType PlainText
-        {
-            get { return _plainText; }
-        }
+        public static ResourceType PNG => _png;
 
-        public static ResourceType PNG
-        {
-            get { return _png; }
-        }
+        public static ResourceType SVG => _svg;
 
-        public static ResourceType SVG
-        {
-            get { return _svg; }
-        }
+        public static ResourceType TIFF => _tiff;
 
-        public static ResourceType TIFF
-        {
-            get { return _tiff; }
-        }
+        public static ResourceType WAV => _wav;
 
-        public static ResourceType WAV
-        {
-            get { return _wav; }
-        }
+        public static ResourceType XAML => _xaml;
 
-        public static ResourceType XAML
-        {
-            get { return _xaml; }
-        }
-
-        public static ResourceType ZIP
-        {
-            get { return _zip; }
-        }
-
-        public ContentType ContentType
-        {
-            get { return _contentType; }
-        }
+        public static ResourceType ZIP => _zip;
 
         public bool Equals(IResourceType otherType)
         {
@@ -137,6 +84,8 @@
             return otherType != null
                    && otherType.ContentType == ContentType;
         }
+
+        public ContentType ContentType => _contentType;
 
         public override bool Equals(object otherObject)
         {

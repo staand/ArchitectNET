@@ -10,6 +10,12 @@ namespace ArchitectNET.DataModel.Support
         private static readonly IDomainMemberClass _typeClass;
         private readonly string _alias;
 
+        public DomainMemberClass(string alias)
+        {
+            Guard.ArgumentNotNull(alias, nameof(alias));
+            _alias = alias;
+        }
+
         static DomainMemberClass()
         {
             _domainModelClass = new DomainModelMemberClass();
@@ -18,35 +24,20 @@ namespace ArchitectNET.DataModel.Support
             _literalClass = new LiteralMemberClass();
         }
 
-        public DomainMemberClass(string alias)
-        {
-            Guard.ArgumentNotNull(alias, "alias");
-            _alias = alias;
-        }
+        public static IDomainMemberClass DomainModel => _domainModelClass;
 
-        public static IDomainMemberClass DomainModel
-        {
-            get { return _domainModelClass; }
-        }
+        public static IDomainMemberClass Literal => _literalClass;
 
-        public static IDomainMemberClass Literal
-        {
-            get { return _literalClass; }
-        }
+        public static IDomainMemberClass Query => _queryClass;
 
-        public static IDomainMemberClass Query
-        {
-            get { return _queryClass; }
-        }
+        public static IDomainMemberClass Type => _typeClass;
 
-        public static IDomainMemberClass Type
+        public virtual bool IsSubclassOf(IDomainMemberClass otherMemberClass)
         {
-            get { return _typeClass; }
-        }
-
-        public string Alias
-        {
-            get { return _alias; }
+            if (otherMemberClass == null)
+                return false;
+            return Equals(this, otherMemberClass)
+                   || GetType().IsSubclassOf(otherMemberClass.GetType());
         }
 
         public virtual bool Equals(IDomainMemberClass otherMemberClass)
@@ -54,13 +45,7 @@ namespace ArchitectNET.DataModel.Support
             return ReferenceEquals(this, otherMemberClass);
         }
 
-        public virtual bool IsSubclassOf(IDomainMemberClass otherMemberClass)
-        {
-            if (otherMemberClass == null)
-                return false;
-            return ReferenceEquals(this, otherMemberClass)
-                   || GetType().IsSubclassOf(otherMemberClass.GetType());
-        }
+        public string Alias => _alias;
 
         public override bool Equals(object otherObject)
         {

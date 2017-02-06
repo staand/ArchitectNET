@@ -4,9 +4,11 @@ namespace ArchitectNET.Core.Collections.Support
 {
     public class DictionaryMap<TKey, TValue> : Dictionary<TKey, TValue>, IVolatileMap<TKey, TValue>
     {
-        int IFixedMap<TKey, TValue>.Count
+        int IFixedMap<TKey, TValue>.Count => Count;
+
+        bool IFixedMap<TKey, TValue>.TryGetValue(TKey key, out TValue value)
         {
-            get { return Count; }
+            return TryGetValue(key, out value);
         }
 
         bool IVolatileMap<TKey, TValue>.Add(TKey key, TValue value)
@@ -25,11 +27,6 @@ namespace ArchitectNET.Core.Collections.Support
         bool IVolatileMap<TKey, TValue>.Remove(TKey key)
         {
             return Remove(key);
-        }
-
-        bool IFixedMap<TKey, TValue>.TryGetValue(TKey key, out TValue value)
-        {
-            return TryGetValue(key, out value);
         }
     }
 }

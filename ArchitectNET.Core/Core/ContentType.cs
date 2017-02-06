@@ -20,8 +20,16 @@ namespace ArchitectNET.Core
         private static readonly ContentType _wav;
         private static readonly ContentType _xaml;
         private static readonly ContentType _zip;
-        private readonly string _mediaSubType;
+        private readonly string _mediaSubtype;
         private readonly string _mediaType;
+
+        public ContentType(string mediaType, string mediaSubtype)
+        {
+            Guard.ArgumentNotNull(mediaType, nameof(mediaType));
+            Guard.ArgumentNotNull(mediaSubtype, nameof(mediaSubtype));
+            _mediaType = mediaType;
+            _mediaSubtype = mediaSubtype;
+        }
 
         static ContentType()
         {
@@ -43,119 +51,39 @@ namespace ArchitectNET.Core
             _plainText = new ContentType("text", "plain");
         }
 
-        public ContentType(string mediaType, string mediaSubType)
-        {
-            Guard.ArgumentNotNull(mediaType, "mediaType");
-            Guard.ArgumentNotNull(mediaSubType, "mediaSubType");
-            _mediaType = mediaType;
-            _mediaSubType = mediaSubType;
-        }
+        public static ContentType Bitmap => _bitmap;
 
-        public static ContentType Bitmap
-        {
-            get { return _bitmap; }
-        }
+        public static ContentType Empty => new ContentType();
 
-        public static ContentType Empty
-        {
-            get { return new ContentType(); }
-        }
+        public static ContentType GIF => _gif;
 
-        public static ContentType GIF
-        {
-            get { return _gif; }
-        }
+        public static ContentType GZIP => _gzip;
 
-        public static ContentType GZIP
-        {
-            get { return _gzip; }
-        }
+        public static ContentType Icon => _icon;
 
-        public static ContentType Icon
-        {
-            get { return _icon; }
-        }
+        public static ContentType JPEG => _jpeg;
 
-        public static ContentType JPEG
-        {
-            get { return _jpeg; }
-        }
+        public static ContentType MP3 => _mp3;
 
-        public static ContentType MP3
-        {
-            get { return _mp3; }
-        }
+        public static ContentType Object => _object;
 
-        public static ContentType Object
-        {
-            get { return _object; }
-        }
+        public static ContentType OGG => _ogg;
 
-        public static ContentType OGG
-        {
-            get { return _ogg; }
-        }
+        public static ContentType PDF => _pdf;
 
-        public static ContentType PDF
-        {
-            get { return _pdf; }
-        }
+        public static ContentType PlainText => _plainText;
 
-        public static ContentType PlainText
-        {
-            get { return _plainText; }
-        }
+        public static ContentType PNG => _png;
 
-        public static ContentType PNG
-        {
-            get { return _png; }
-        }
+        public static ContentType SVG => _svg;
 
-        public static ContentType SVG
-        {
-            get { return _svg; }
-        }
+        public static ContentType TIFF => _tiff;
 
-        public static ContentType TIFF
-        {
-            get { return _tiff; }
-        }
+        public static ContentType WAV => _wav;
 
-        public static ContentType WAV
-        {
-            get { return _wav; }
-        }
+        public static ContentType XAML => _xaml;
 
-        public static ContentType XAML
-        {
-            get { return _xaml; }
-        }
-
-        public static ContentType ZIP
-        {
-            get { return _zip; }
-        }
-
-        public bool IsEmpty
-        {
-            get { return _mediaType == null || _mediaSubType == null; }
-        }
-
-        public string MediaSubType
-        {
-            get { return _mediaSubType; }
-        }
-
-        public string MediaType
-        {
-            get { return _mediaType; }
-        }
-
-        public bool Equals(ContentType otherContentType)
-        {
-            return _mediaType.Equals(otherContentType._mediaType, StringComparison.OrdinalIgnoreCase)
-                   && _mediaSubType.Equals(otherContentType._mediaSubType, StringComparison.OrdinalIgnoreCase);
-        }
+        public static ContentType ZIP => _zip;
 
         public static bool operator ==(ContentType contentType1, ContentType contentType2)
         {
@@ -165,6 +93,21 @@ namespace ArchitectNET.Core
         public static bool operator !=(ContentType contentType1, ContentType contentType2)
         {
             return !contentType1.Equals(contentType2);
+        }
+
+        public bool IsEmpty => _mediaType == null || _mediaSubtype == null;
+
+        public string MediaSubtype => _mediaSubtype;
+
+        public string MediaType => _mediaType;
+
+        public bool Equals(ContentType otherContentType)
+        {
+            const StringComparison stringComparison = StringComparison.OrdinalIgnoreCase;
+            var otherMediaType = otherContentType._mediaType;
+            var otherMediaSubtype = otherContentType.MediaSubtype;
+            return _mediaType.Equals(otherMediaType, stringComparison)
+                   && _mediaSubtype.Equals(otherMediaSubtype, stringComparison);
         }
 
         public override bool Equals(object otherObject)
@@ -177,12 +120,12 @@ namespace ArchitectNET.Core
         public override int GetHashCode()
         {
             return _mediaType.GetHashCode()
-                   ^ _mediaSubType.GetHashCode();
+                   ^ _mediaSubtype.GetHashCode();
         }
 
         public override string ToString()
         {
-            return string.Format("{0}/{1}", _mediaType, _mediaSubType);
+            return $"{_mediaType}/{_mediaSubtype}";
         }
     }
 }

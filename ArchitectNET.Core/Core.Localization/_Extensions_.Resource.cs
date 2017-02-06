@@ -8,11 +8,11 @@ namespace ArchitectNET.Core.Localization
     {
         public static string ExtractString(this IResource resource)
         {
-            Guard.ArgumentNotNull(resource, "resource");
+            Guard.ArgumentNotNull(resource, nameof(resource));
             var textResource = resource as PlainTextResource;
             if (textResource != null)
                 return textResource.Text;
             throw new Exception(Resources.FormatString("7AE394F5-E90B-4074-A269-169194AE9244", resource.Type));
         }
-    } 
+    }
 }

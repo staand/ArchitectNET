@@ -9,8 +9,8 @@ namespace ArchitectNET.Core.Localization.Support
 
         public ResourceManagerLocalizer(Assembly assembly, string baseName)
         {
-            Guard.ArgumentNotNull(assembly, "assembly");
-            Guard.ArgumentNotNull(baseName, "baseName");
+            Guard.ArgumentNotNull(assembly, nameof(assembly));
+            Guard.ArgumentNotNull(baseName, nameof(baseName));
             _resourceManager = new ResourceManager(baseName, assembly);
         }
 
