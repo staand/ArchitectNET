@@ -88,41 +88,109 @@ namespace ArchitectNET.Core
             _insensitiveStringType = typeof(InsensitiveString);
         }
 
+        /// <summary>
+        /// Initializes new <see cref="ContentType" /> instance with a value of type <see cref="byte" />
+        /// </summary>
+        /// <param name="byteValue"> Unsigned 8-bit integer which is to be treated as an identifier </param>
         public ID(byte byteValue)
         {
             _value = byteValue;
         }
 
+        /// <summary>
+        /// Initializes new <see cref="ContentType" /> instance with a value of type <see cref="byte" /> or with a
+        /// <see langword="null" /> value
+        /// </summary>
+        /// <param name="nullableByteValue">
+        /// Unsigned 8-bit integer which is to be treated as an identifier or
+        /// <see langword="null" /> value
+        /// </param>
+        /// <remarks>
+        /// If <paramref name="nullableByteValue" /> is null, the initialized instance is treated empty, thus it is equal to
+        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// </remarks>
         public ID(byte? nullableByteValue)
         {
             _value = nullableByteValue;
         }
 
+        /// <summary>
+        /// Initializes new <see cref="ContentType" /> instance with a value of type <see cref="int" /> or with a
+        /// <see langword="null" /> value
+        /// </summary>
+        /// <param name="nullableIntValue">
+        /// Signed 32-bit integer which is to be treated as an identifier or
+        /// <see langword="null" /> value
+        /// </param>
+        /// <remarks>
+        /// If <paramref name="nullableIntValue" /> is null, the initialized instance is treated empty, thus it is equal to
+        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// </remarks>
         public ID(int? nullableIntValue)
         {
             _value = nullableIntValue;
         }
 
+        /// <summary>
+        /// Initializes new <see cref="ContentType" /> instance with a value of type <see cref="int" />
+        /// </summary>
+        /// <param name="intValue"> Signed 32-bit integer which is to be treated as an identifier </param>
         public ID(int intValue)
         {
             _value = intValue;
         }
 
+        /// <summary>
+        /// Initializes new <see cref="ContentType" /> instance with a value of type <see cref="long" /> or with a
+        /// <see langword="null" /> value
+        /// </summary>
+        /// <param name="nullableLongValue">
+        /// Signed 64-bit integer which is to be treated as an identifier or
+        /// <see langword="null" /> value
+        /// </param>
+        /// <remarks>
+        /// If <paramref name="nullableLongValue" /> is null, the initialized instance is treated empty, thus it is equal to
+        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// </remarks>
         public ID(long? nullableLongValue)
         {
             _value = nullableLongValue;
         }
 
+        /// <summary>
+        /// Initializes new <see cref="ContentType" /> instance with a value of type <see cref="long" />
+        /// </summary>
+        /// <param name="longValue"> Signed 64-bit integer which is to be treated as an identifier </param>
         public ID(long longValue)
         {
             _value = longValue;
         }
 
+        /// <summary>
+        /// Initializes new <see cref="ContentType" /> instance with a value of type <see cref="string" />
+        /// </summary>
+        /// <param name="ordinalStringValue"> <see cref="string" /> object which is to be treated as an identifier </param>
+        /// <remarks>
+        /// The initialized instance will behave as ordinal case-sensitive string during equality checks.<br />The
+        /// <paramref name="ordinalStringValue" /> is allowed to be <see langword="null" />, in which case the
+        /// <see cref="ContentType" /> instance is treated empty, thus it is equal to <see cref="Empty" /> and it's
+        /// <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// </remarks>
         public ID(string ordinalStringValue)
         {
             _value = ordinalStringValue;
         }
 
+        /// <summary>
+        /// Initializes new <see cref="ContentType" /> instance with a value of type <see cref="InsensitiveString" />
+        /// </summary>
+        /// <param name="insensitiveStringValue"> <see cref="InsensitiveString" /> object which is to be treated as an identifier </param>
+        /// <remarks>
+        /// The initialized instance will behave as case-insensitive string during equality checks.<br />The
+        /// <paramref name="insensitiveStringValue" /> is allowed to be <see langword="null" />, in which case the
+        /// <see cref="ContentType" /> instance is treated empty, thus it is equal to <see cref="Empty" /> and it's
+        /// <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// </remarks>
         public ID(InsensitiveString insensitiveStringValue)
         {
             _value = insensitiveStringValue;
