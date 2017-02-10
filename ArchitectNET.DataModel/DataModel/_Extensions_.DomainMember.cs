@@ -1,5 +1,5 @@
 ﻿using ArchitectNET.Core;
-using ArchitectNET.DataModel.Support;
+using ArchitectNET.DataModel.Classification;
 
 namespace ArchitectNET.DataModel
 {

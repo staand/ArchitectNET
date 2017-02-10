@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\ArchitectNET.Core.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -45,28 +46,28 @@
     <Compile Include="Core.Collections\IVolatileList.cs" />
     <Compile Include="Core.Collections\IVolatileMap.cs" />
     <Compile Include="Core.Collections\_Extensions_.FixedMap.cs" />
-    <Compile Include="Core.Dynamic.Support\AssemblyObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\ConstructorObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\DynamicObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\EventObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\FieldObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\MemberObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\MethodObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\ModuleObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\DynamicSystemObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\ParameterObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\PropertyObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\TypeObjectCategory.cs" />
-    <Compile Include="Core.Dynamic.Support\TypeParameterObjectCategory.cs" />
+    <Compile Include="Core.Dynamic.Classification\AssemblyObjectClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\ConstructorMemberClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\DynamicObjectClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\EventMemberClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\FieldMemberClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\MemberObjectClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\MethodMemberClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\ModuleObjectClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\DynamicRuntimeObjectClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\ParameterObjectClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\PropertyMemberClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\TypeMemberClass.cs" />
+    <Compile Include="Core.Dynamic.Classification\TypeParameterTypeClass.cs" />
     <Compile Include="Core.Dynamic\IAssembly.cs" />
     <Compile Include="Core.Dynamic\IAssemblyModuleCollection.cs" />
     <Compile Include="Core.Dynamic\IAttributedObject.cs" />
     <Compile Include="Core.Dynamic\IConstructor.cs" />
     <Compile Include="Core.Dynamic\IDynamicObject.cs" />
-    <Compile Include="Core.Dynamic\IDynamicObjectCategory.cs" />
+    <Compile Include="Core.Dynamic\IDynamicObjectClass.cs" />
     <Compile Include="Core.Dynamic\IDynamicObjectProvider.cs" />
-    <Compile Include="Core.Dynamic\IDynamicSystem.cs" />
-    <Compile Include="Core.Dynamic\IDynamicSystemAware.cs" />
+    <Compile Include="Core.Dynamic\IDynamicRuntime.cs" />
+    <Compile Include="Core.Dynamic\IDynamicRuntimeAware.cs" />
     <Compile Include="Core.Dynamic\IEvent.cs" />
     <Compile Include="Core.Dynamic\IField.cs" />
     <Compile Include="Core.Dynamic\IGenericMember.cs" />
@@ -113,6 +114,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Core.Dynamic.Support\" />
     <Folder Include="Core.Support\" />
     <Folder Include="Core._Assets_\" />
   </ItemGroup>

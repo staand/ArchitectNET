@@ -1,6 +1,6 @@
-﻿namespace ArchitectNET.Core.Dynamic.Support
+﻿namespace ArchitectNET.Core.Dynamic.Classification
 {
-    public class ParameterObjectCategory : DynamicObjectCategory
+    public class ParameterObjectClass : DynamicObjectClass
     {
         public override string ToString()
         {

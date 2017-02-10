@@ -39,12 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModel.Support\DomainMemberClass.cs" />
-    <Compile Include="DataModel.Support\DomainModelMemberClass.cs" />
+    <Compile Include="DataModel.Classification\DomainMemberClass.cs" />
+    <Compile Include="DataModel.Classification\DomainModelMemberClass.cs" />
     <Compile Include="DataModel.Support\DomainRole.cs" />
-    <Compile Include="DataModel.Support\LiteralMemberClass.cs" />
-    <Compile Include="DataModel.Support\QueryMemberClass.cs" />
-    <Compile Include="DataModel.Support\TypeMemberClass.cs" />
+    <Compile Include="DataModel.Classification\LiteralMemberClass.cs" />
+    <Compile Include="DataModel.Classification\QueryMemberClass.cs" />
+    <Compile Include="DataModel.Classification\TypeMemberClass.cs" />
     <Compile Include="DataModel._Internal_\Resources.cs" />
     <Compile Include="DataModel\DomainMemberRef.cs" />
     <Compile Include="DataModel\DomainMemberRefKind.cs" />

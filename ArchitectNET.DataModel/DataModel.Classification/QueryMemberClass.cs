@@ -1,4 +1,4 @@
-﻿namespace ArchitectNET.DataModel.Support
+﻿namespace ArchitectNET.DataModel.Classification
 {
     public class QueryMemberClass : DomainMemberClass
     {

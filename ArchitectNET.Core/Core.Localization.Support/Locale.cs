@@ -7,15 +7,15 @@ namespace ArchitectNET.Core.Localization.Support
         private static readonly Locale _invariant;
         private readonly CultureInfo _culture;
 
+        static Locale()
+        {
+            _invariant = new Locale(CultureInfo.InvariantCulture);
+        }
+
         public Locale(CultureInfo culture)
         {
             Guard.ArgumentNotNull(culture, nameof(culture));
             _culture = culture;
-        }
-
-        static Locale()
-        {
-            _invariant = new Locale(CultureInfo.InvariantCulture);
         }
 
         public static Locale Invariant => _invariant;

@@ -20,11 +20,6 @@
         private static readonly ResourceType _zip;
         private readonly ContentType _contentType;
 
-        public ResourceType(ContentType contentType)
-        {
-            _contentType = contentType;
-        }
-
         static ResourceType()
         {
             _bitmap = new ResourceType(ContentType.Bitmap);
@@ -43,6 +38,11 @@
             _wav = new ResourceType(ContentType.WAV);
             _xaml = new ResourceType(ContentType.XAML);
             _zip = new ResourceType(ContentType.ZIP);
+        }
+
+        public ResourceType(ContentType contentType)
+        {
+            _contentType = contentType;
         }
 
         public static ResourceType Bitmap => _bitmap;

@@ -1,6 +1,6 @@
-﻿namespace ArchitectNET.Core.Dynamic.Support
+﻿namespace ArchitectNET.Core.Dynamic.Classification
 {
-    public class EventObjectCategory : MemberObjectCategory
+    public class EventMemberClass : MemberObjectClass
     {
         public override string ToString()
         {

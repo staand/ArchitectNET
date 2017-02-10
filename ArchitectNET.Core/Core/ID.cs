@@ -3,17 +3,80 @@ using ArchitectNET.Core._Internal_;
 
 namespace ArchitectNET.Core
 {
+    /// <summary>
+    /// Represents an immutable strongly typed identifier (ID), which supports most widely used  data types for identifiers.
+    /// <br />Currently supported data types are:
+    /// <list type="bullet">
+    ///     <item>
+    ///         <description> <see cref="byte" /> - 8-bit unsigned integer </description>
+    ///     </item>
+    ///     <item>
+    ///         <description> <see cref="int" /> - 32-bit signed integer </description>
+    ///     </item>
+    ///     <item>
+    ///         <description> <see cref="long" /> - 64-bit signed integer </description>
+    ///     </item>
+    ///     <item>
+    ///         <description> <see cref="string" /> - ordinal case-sensitive string </description>
+    ///     </item>
+    ///     <item>
+    ///         <description> <see cref="InsensitiveString" /> - case-insensitive string </description>
+    ///     </item>
+    ///     <item>
+    ///         <description> <see cref="Guid" /> - 128-bit global unique identifier (GUID) </description>
+    ///     </item>
+    ///     <item>
+    ///         <description> <see langword="null" /> - empty identifier </description>
+    ///     </item>
+    /// </list>
+    /// </summary>
     public struct ID : IEquatable<ID>, IFormattable
     {
+        /// <summary>
+        /// Cashed <see cref="Type" /> instance for <see cref="byte" /> data type (is equal to <code>typeof(byte)</code>)
+        /// </summary>
         private static readonly Type _byteType;
+
+        /// <summary>
+        /// Cashed <see cref="Type" /> instance for <see cref="Guid" /> data type (is equal to <code>typeof(Guid)</code>)
+        /// </summary>
         private static readonly Type _guidType;
+
+        /// <summary>
+        /// Cashed <see cref="Type" /> instance for <see cref="ID" /> data type (is equal to <code>typeof(ID)</code>)
+        /// </summary>
         private static readonly Type _idType;
+
+        /// <summary>
+        /// Cashed <see cref="Type" /> instance for <see cref="InsensitiveString" /> data type (is equal to
+        /// <code>typeof(InsensitiveString)</code>)
+        /// </summary>
         private static readonly Type _insensitiveStringType;
+
+        /// <summary>
+        /// Cashed <see cref="Type" /> instance for <see cref="int" /> data type (is equal to <code>typeof(int)</code>)
+        /// </summary>
         private static readonly Type _intType;
+
+        /// <summary>
+        /// Cashed <see cref="Type" /> instance for <see cref="long" /> data type (is equal to <code>typeof(long)</code>)
+        /// </summary>
         private static readonly Type _longType;
+
+        /// <summary>
+        /// Cashed <see cref="Type" /> instance for <see cref="string" /> data type (is equal to <code>typeof(string)</code>)
+        /// </summary>
         private static readonly Type _ordinalStringType;
+
+        /// <summary>
+        /// Object representing current instance value. Can be <see langword="null" /> or of one of supported types listed above
+        /// </summary>
         private readonly object _value;
 
+        /// <summary>
+        /// Initializes all of static fields cashing required <see cref="Type" /> instances (e.g. <see cref="_byteType" />,
+        /// <see cref="_intType" /> etc.)
+        /// </summary>
         static ID()
         {
             _idType = typeof(ID);

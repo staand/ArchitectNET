@@ -1,7 +1,7 @@
 ﻿namespace ArchitectNET.Core.Dynamic
 {
-    public interface IDynamicObject : IDynamicSystemAware, IHasName
+    public interface IDynamicObject : IDynamicRuntimeAware, IHasName
     {
-        IDynamicObjectCategory Category { get; }
+        IDynamicObjectClass Class { get; }
     }
 }

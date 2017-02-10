@@ -1,6 +1,6 @@
 ﻿using ArchitectNET.Core;
 
-namespace ArchitectNET.DataModel.Support
+namespace ArchitectNET.DataModel.Classification
 {
     public class DomainMemberClass : IDomainMemberClass
     {
@@ -10,18 +10,18 @@ namespace ArchitectNET.DataModel.Support
         private static readonly IDomainMemberClass _typeClass;
         private readonly string _alias;
 
-        public DomainMemberClass(string alias)
-        {
-            Guard.ArgumentNotNull(alias, nameof(alias));
-            _alias = alias;
-        }
-
         static DomainMemberClass()
         {
             _domainModelClass = new DomainModelMemberClass();
             _typeClass = new TypeMemberClass();
             _queryClass = new QueryMemberClass();
             _literalClass = new LiteralMemberClass();
+        }
+
+        public DomainMemberClass(string alias)
+        {
+            Guard.ArgumentNotNull(alias, nameof(alias));
+            _alias = alias;
         }
 
         public static IDomainMemberClass DomainModel => _domainModelClass;
