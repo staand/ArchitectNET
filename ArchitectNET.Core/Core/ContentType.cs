@@ -122,7 +122,7 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Initializes new instance of <see cref="ContentType" />
+        /// Initializes a new instance of <see cref="ContentType" />
         /// </summary>
         /// <param name="mediaType"> Media type name </param>
         /// <param name="mediaSubtype"> Media subtype name </param>
@@ -223,13 +223,14 @@ namespace ArchitectNET.Core
         public static ContentType ZIP => _zip;
 
         /// <summary>
-        /// Equality operator overload. Just calls and returns result of the <see cref="Equals(ContentType)" /> method
+        /// Determines whether two specified content types have the same value. Just calls and returns result of the
+        /// <see cref="Equals(ContentType)" /> method
         /// </summary>
-        /// <param name="contentType1"> The first comparing <see cref="ContentType" /> instance </param>
-        /// <param name="contentType2"> The second comparing <see cref="ContentType" /> instance </param>
+        /// <param name="contentType1"> The first comparing <see cref="ContentType" /> </param>
+        /// <param name="contentType2"> The second comparing <see cref="ContentType" /> </param>
         /// <returns>
-        /// <see langword="true" /> if <paramref name="contentType1" /> is equal to <paramref name="contentType2" />,
-        /// <see langword="false" /> otherwise
+        /// <see langword="true" /> if <paramref name="contentType1" /> is equal to <paramref name="contentType2" />, otherwise
+        /// <see langword="false" />
         /// </returns>
         public static bool operator ==(ContentType contentType1, ContentType contentType2)
         {
@@ -237,14 +238,14 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Inequality operator overload. Just calls and returns an inverted result of the <see cref="Equals(ContentType)" />
-        /// method
+        /// Determines whether two specified content types have different values. Just calls and returns an inverted result of the
+        /// <see cref="Equals(ContentType)" /> method
         /// </summary>
-        /// <param name="contentType1"> The first comparing <see cref="ContentType" /> instance </param>
-        /// <param name="contentType2"> The second comparing <see cref="ContentType" /> instance> </param>
+        /// <param name="contentType1"> The first comparing <see cref="ContentType" /> </param>
+        /// <param name="contentType2"> The second comparing <see cref="ContentType" /> </param>
         /// <returns>
-        /// <see langword="true" /> if <paramref name="contentType1" /> is NOT equal to <paramref name="contentType2" />,
-        /// <see langword="false" /> otherwise
+        /// <see langword="true" /> if <paramref name="contentType1" /> is NOT equal to <paramref name="contentType2" /> otherwise
+        /// <see langword="false" />
         /// </returns>
         public static bool operator !=(ContentType contentType1, ContentType contentType2)
         {
@@ -252,8 +253,8 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Returns <see langword="true" /> if this instance reperesents an unknown content type, <see langword="false" />
-        /// otherwise
+        /// Returns <see langword="true" /> if this instance reperesents an unknown content type, otherwise
+        /// <see langword="false" />
         /// </summary>
         public bool IsEmpty => _mediaType == null || _mediaSubtype == null;
 
@@ -298,7 +299,7 @@ namespace ArchitectNET.Core
         /// <param name="otherObject"> The object to compare to this instance </param>
         /// <returns>
         /// <see langword="true" /> if <paramref name="otherObject" /> is a <see cref="ContentType" /> and its value is
-        /// the same as this instance, <see langword="false" /> otherwise
+        /// the same as this instance, otherwise <see langword="false" />
         /// </returns>
         public override bool Equals(object otherObject)
         {

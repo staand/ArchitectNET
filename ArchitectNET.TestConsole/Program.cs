@@ -1,8 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
+﻿using System.Diagnostics;
 using ArchitectNET.Core;
+using static System.Console;
 
 namespace ArchitectNET.TestConsole
 {
@@ -18,8 +16,8 @@ namespace ArchitectNET.TestConsole
                 Guard.ArgumentNotNull(args, nameof(args));
             }
             sw.Stop();
-            Console.WriteLine(sw.ElapsedTicks);
-            Console.WriteLine(sw.ElapsedTicks / (double) n);
+            WriteLine(sw.ElapsedTicks);
+            WriteLine(sw.ElapsedTicks / (double) n);
         }
     }
 }

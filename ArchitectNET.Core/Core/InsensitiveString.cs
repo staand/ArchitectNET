@@ -8,6 +8,12 @@ using ArchitectNET.Core._Internal_;
 
 namespace ArchitectNET.Core
 {
+    /// <summary>
+    /// Represents a static string of characters which performs all comparison operations in the case-insensitivity context.
+    /// Like standard <see cref="string" />, <see cref="InsensitiveString" /> is immutable, thus all methods performing some
+    /// type of transformation return the result as new <see cref="InsensitiveString" />. As with standard strings, character
+    /// positions (indices) are zero-based
+    /// </summary>
     public sealed class InsensitiveString : IComparable,
                                             ICloneable,
                                             IConvertible,
@@ -17,9 +23,24 @@ namespace ArchitectNET.Core
                                             IComparable<InsensitiveString>,
                                             IEquatable<InsensitiveString>
     {
+        /// <summary>
+        /// Base (underlying) string which is wrapped by this instance of <see cref="InsensitiveString" />
+        /// </summary>
         private readonly string _baseString;
+
+        /// <summary>
+        /// Cashed hash code of this instance. Hash code is evaluated lazily during the first call of <see cref="GetHashCode" />
+        /// method
+        /// </summary>
         private int _hashCode;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="InsensitiveString" /> by wrapping the specified <paramref name="baseString" />
+        /// </summary>
+        /// <param name="baseString">
+        /// Ordinal <see cref="string" /> which is to be wrapped into new
+        /// <see cref="InsensitiveString" />
+        /// </param>
         public InsensitiveString(string baseString)
         {
             Guard.ArgumentNotNull(baseString, nameof(baseString));
@@ -27,11 +48,29 @@ namespace ArchitectNET.Core
             _hashCode = 0;
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="InsensitiveString" /> with characters copied from the
+        /// <paramref name="baseStringBuffer" />
+        /// </summary>
+        /// <param name="baseStringBuffer">
+        /// Array of <see cref="char" /> to copy characters from into new
+        /// <see cref="InsensitiveString" />
+        /// </param>
         public InsensitiveString(char[] baseStringBuffer)
             : this(new string(baseStringBuffer))
         {
         }
 
+        /// <summary>
+        /// Replaces the given <see cref="StringComparison" /> value by equivalent one which indicates the ignorance of character
+        /// case during different comparison operations (e.g. <see cref="StringComparison.CurrentCulture" /> is replaced by
+        /// <see cref="StringComparison.CurrentCultureIgnoreCase" />)
+        /// </summary>
+        /// <param name="comparison">
+        /// <see cref="StringComparison" /> value which is to be replaced by a case-insensitive
+        /// equivalent
+        /// </param>
+        /// <returns> </returns>
         public static StringComparison Insensitivify(StringComparison comparison)
         {
             switch (comparison)
@@ -47,11 +86,36 @@ namespace ArchitectNET.Core
             }
         }
 
+        /// <summary>
+        /// Expands the given character array in such way, that for each character <code>X</code> in the initial array both upper-
+        /// and lower-cased variants of <code>X</code> will be present in the result array (e.g. ['a', 'B'] will be expanded to
+        /// ['a', 'A', 'b', 'B'])
+        /// </summary>
+        /// <param name="characters"> Array of <see cref="char" /> which is to be expanded </param>
+        /// <returns>
+        /// Expanded array of <see cref="char" /> which contains both upper- and lower-cased variants of each character
+        /// in the initial array
+        /// </returns>
+        /// <remarks> This method uses <see cref="CultureInfo.CurrentCulture" /> culture to change character case </remarks>
         public static char[] Insensitivify(params char[] characters)
         {
             return Insensitivify(characters, CultureInfo.CurrentCulture);
         }
 
+        /// <summary>
+        /// Expands the given character array in such way, that for each character <code>X</code> in the initial array both upper-
+        /// and lower-cased variants of <code>X</code> will be present in the result array (e.g. ['a', 'B'] will be expanded to
+        /// ['a', 'A', 'b', 'B'])
+        /// </summary>
+        /// <param name="characters"> Array of <see cref="char" /> which is to be expanded </param>
+        /// <param name="culture">
+        /// <see cref="CultureInfo" /> which should be used to change character case. If
+        /// <paramref name="culture" /> is <see langword="null" />, <see cref="CultureInfo.CurrentCulture" /> will be used
+        /// </param>
+        /// <returns>
+        /// Expanded array of <see cref="char" /> which contains both upper- and lower-cased variants of each character
+        /// in the initial array
+        /// </returns>
         public static char[] Insensitivify(char[] characters, CultureInfo culture)
         {
             Guard.ArgumentNotNull(characters, nameof(characters));
@@ -74,7 +138,13 @@ namespace ArchitectNET.Core
             return insensitiveCharacters.ToArray();
         }
 
-
+        /// <summary>
+        /// Determines whether two specified case-insensitive strings have the same value
+        /// </summary>
+        /// <param name="string1">The first case-insensitive string to compare</param>
+        /// <param name="string2">The second case-insensitive string to compare</param>
+        /// <returns><see langword="true"/> if the value of <paramref name="string1"/> is the same as the value of <paramref name="string2"/>, otherwise <see langword="false"/></returns>
+        /// <remarks>This method use <see cref="CultureInfo.CurrentCulture"/> in comparison operation</remarks>
         public static bool operator ==(InsensitiveString string1, InsensitiveString string2)
         {
             var isString1Null = ReferenceEquals(string1, null);
@@ -100,6 +170,13 @@ namespace ArchitectNET.Core
             return new InsensitiveString(baseString);
         }
 
+        /// <summary>
+        /// Determines whether two specified case-insensitive strings have different values
+        /// </summary>
+        /// <param name="string1">The first case-insensitive string to compare</param>
+        /// <param name="string2">The second case-insensitive string to compare</param>
+        /// <returns><see langword="true"/> if the value of <paramref name="string1"/> is different from the value of <paramref name="string2"/>, otherwise <see langword="false"/></returns>
+        /// <remarks>This method use <see cref="CultureInfo.CurrentCulture"/> in comparison operation</remarks>
         public static bool operator !=(InsensitiveString string1, InsensitiveString string2)
         {
             var isString1Null = ReferenceEquals(string1, null);
@@ -568,23 +645,23 @@ namespace ArchitectNET.Core
             while (i >= 0)
             {
                 i = baseString.IndexOf(oldSubstring,
-                                       j,
-                                       StringComparison.CurrentCultureIgnoreCase);
+                    j,
+                    StringComparison.CurrentCultureIgnoreCase);
                 var isFound = i >= 0;
                 if (!isFound && j == 0)
                     return this;
                 var charactersToCopyCount = (isFound ? i : Length) - j;
                 baseString.CopyTo(j,
-                                  buffer,
-                                  bufferCount,
-                                  charactersToCopyCount);
+                    buffer,
+                    bufferCount,
+                    charactersToCopyCount);
                 bufferCount += charactersToCopyCount;
                 if (!isFound)
                     break;
                 newSubstring.CopyTo(0,
-                                    buffer,
-                                    bufferCount,
-                                    newSubstring.Length);
+                    buffer,
+                    bufferCount,
+                    newSubstring.Length);
                 bufferCount += newSubstring.Length;
                 j = i + newSubstring.Length;
             }
