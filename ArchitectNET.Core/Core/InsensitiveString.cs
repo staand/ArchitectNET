@@ -141,10 +141,13 @@ namespace ArchitectNET.Core
         /// <summary>
         /// Determines whether two specified case-insensitive strings have the same value
         /// </summary>
-        /// <param name="string1">The first case-insensitive string to compare</param>
-        /// <param name="string2">The second case-insensitive string to compare</param>
-        /// <returns><see langword="true"/> if the value of <paramref name="string1"/> is the same as the value of <paramref name="string2"/>, otherwise <see langword="false"/></returns>
-        /// <remarks>This method use <see cref="CultureInfo.CurrentCulture"/> in comparison operation</remarks>
+        /// <param name="string1"> The first case-insensitive string to compare </param>
+        /// <param name="string2"> The second case-insensitive string to compare </param>
+        /// <returns>
+        /// <see langword="true" /> if the value of <paramref name="string1" /> is the same as the value of
+        /// <paramref name="string2" />, otherwise <see langword="false" />
+        /// </returns>
+        /// <remarks> This method use <see cref="CultureInfo.CurrentCulture" /> in comparison operation </remarks>
         public static bool operator ==(InsensitiveString string1, InsensitiveString string2)
         {
             var isString1Null = ReferenceEquals(string1, null);
@@ -156,6 +159,13 @@ namespace ArchitectNET.Core
             return string1.Equals(string2);
         }
 
+        /// <summary>
+        /// Converts <see cref="InsensitiveString" /> to ordinal <see cref="string" />, from which the former was created, or
+        /// returns <see langword="null" /> if given <paramref name="insensitiveString" /> is <see langword="null" />
+        /// </summary>
+        /// <param name="insensitiveString">
+        /// <see cref="InsensitiveString" /> which is to be converted to <see cref="string" />
+        /// </param>
         public static implicit operator string(InsensitiveString insensitiveString)
         {
             if (ReferenceEquals(insensitiveString, null))
@@ -163,6 +173,11 @@ namespace ArchitectNET.Core
             return insensitiveString._baseString;
         }
 
+        /// <summary>
+        /// Converts ordinal <see cref="string" /> to <see cref="InsensitiveString" /> by creating new instance of the latter, or
+        /// returns <see langword="null" /> if given <paramref name="baseString" /> is <see langword="null" />
+        /// </summary>
+        /// <param name="baseString"> </param>
         public static implicit operator InsensitiveString(string baseString)
         {
             if (baseString == null)
@@ -173,10 +188,13 @@ namespace ArchitectNET.Core
         /// <summary>
         /// Determines whether two specified case-insensitive strings have different values
         /// </summary>
-        /// <param name="string1">The first case-insensitive string to compare</param>
-        /// <param name="string2">The second case-insensitive string to compare</param>
-        /// <returns><see langword="true"/> if the value of <paramref name="string1"/> is different from the value of <paramref name="string2"/>, otherwise <see langword="false"/></returns>
-        /// <remarks>This method use <see cref="CultureInfo.CurrentCulture"/> in comparison operation</remarks>
+        /// <param name="string1"> The first case-insensitive string to compare </param>
+        /// <param name="string2"> The second case-insensitive string to compare </param>
+        /// <returns>
+        /// <see langword="true" /> if the value of <paramref name="string1" /> is different from the value of
+        /// <paramref name="string2" />, otherwise <see langword="false" />
+        /// </returns>
+        /// <remarks> This method use <see cref="CultureInfo.CurrentCulture" /> in comparison operation </remarks>
         public static bool operator !=(InsensitiveString string1, InsensitiveString string2)
         {
             var isString1Null = ReferenceEquals(string1, null);
@@ -188,15 +206,59 @@ namespace ArchitectNET.Core
             return !string1.Equals(string2);
         }
 
+        /// <summary>
+        /// Gets the character at a specified position
+        /// </summary>
+        /// <param name="index"> A zero-based position in the current <see cref="InsensitiveString" /> </param>
+        /// <returns> The character at position <paramref name="index" /> </returns>
         public char this[int index] => _baseString[index];
 
+        /// <summary>
+        /// Gets the number of characters in the current <see cref="InsensitiveString" />
+        /// </summary>
         public int Length => _baseString.Length;
 
+        /// <summary>
+        /// Returns a referense to this <see cref="InsensitiveString" />
+        /// </summary>
+        /// <returns> A reference to this instance </returns>
         public object Clone()
         {
             return this;
         }
 
+        /// <summary>
+        /// Compares this instance with a specified <see cref="object" /> and indicates whether this instance precedes, follows, or
+        /// appears in the same position in the sort order as the specified <see cref="object" />
+        /// </summary>
+        /// <param name="otherObject">
+        /// An <see cref="object" /> to compare with. If <paramref name="otherObject" /> is neither of type <see cref="string" />
+        /// nor of type <see cref="InsensitiveString" />, an exception is thrown
+        /// </param>
+        /// <returns>
+        /// A 32-bit signed integer that indicates whether this instance precedes, follows, or appears in the same position in the
+        /// sort order as the <paramref name="otherObject" />:
+        /// <list type="bullet">
+        ///     <listheader>
+        ///         <term> Value </term>
+        ///         <description> Condition </description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term> Less than zero </term>
+        ///         <description> This instance precedes <paramref name="otherObject" /> </description>
+        ///     </item>
+        ///     <item>
+        ///         <term> Zero </term>
+        ///         <description>
+        ///         This instance has the same position in the sort order as <paramref name="otherObject" />
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <term> Greater than zero </term>
+        ///         <description> This instance follows  <paramref name="otherObject" /> </description>
+        ///     </item>
+        /// </list>
+        /// </returns>
         int IComparable.CompareTo(object otherObject)
         {
             Guard.ArgumentNotNull(otherObject, nameof(otherObject));
@@ -209,112 +271,341 @@ namespace ArchitectNET.Core
             throw new Exception(Resources.FormatString("FBD8C857-97DE-4761-9E27-424465171F12", otherObject.GetType()));
         }
 
+        /// <summary>
+        /// Compares this instance with a specified <see cref="InsensitiveString" /> and indicates whether this instance precedes,
+        /// follows, or
+        /// appears in the same position in the sort order as the specified <see cref="InsensitiveString" />
+        /// </summary>
+        /// <param name="otherString"> An <see cref="InsensitiveString" /> to compare with </param>
+        /// <returns>
+        /// A 32-bit signed integer that indicates whether this instance precedes, follows, or appears in the same position in the
+        /// sort order as the <paramref name="otherString" />:
+        /// <list type="bullet">
+        ///     <listheader>
+        ///         <term> Value </term>
+        ///         <description> Condition </description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term> Less than zero </term>
+        ///         <description> This instance precedes <paramref name="otherString" /> </description>
+        ///     </item>
+        ///     <item>
+        ///         <term> Zero </term>
+        ///         <description>
+        ///         This instance has the same position in the sort order as <paramref name="otherString" />
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <term> Greater than zero </term>
+        ///         <description> This instance follows  <paramref name="otherString" /> </description>
+        ///     </item>
+        /// </list>
+        /// </returns>
         public int CompareTo(InsensitiveString otherString)
         {
             return CompareTo(otherString, CultureInfo.CurrentCulture);
         }
 
+        /// <summary>
+        /// Compares this instance with a specified <see cref="string" /> and indicates whether this instance precedes, follows, or
+        /// appears in the same position in the sort order as the specified <see cref="string" />
+        /// </summary>
+        /// <param name="otherString"> An <see cref="string" /> to compare with </param>
+        /// <returns>
+        /// A 32-bit signed integer that indicates whether this instance precedes, follows, or appears in the same position in the
+        /// sort order as the <paramref name="otherString" />:
+        /// <list type="bullet">
+        ///     <listheader>
+        ///         <term> Value </term>
+        ///         <description> Condition </description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term> Less than zero </term>
+        ///         <description> This instance precedes <paramref name="otherString" /> </description>
+        ///     </item>
+        ///     <item>
+        ///         <term> Zero </term>
+        ///         <description>
+        ///         This instance has the same position in the sort order as <paramref name="otherString" />
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <term> Greater than zero </term>
+        ///         <description> This instance follows  <paramref name="otherString" /> </description>
+        ///     </item>
+        /// </list>
+        /// </returns>
         public int CompareTo(string otherString)
         {
             Guard.ArgumentNotNull(otherString, nameof(otherString));
             return CompareTo(new InsensitiveString(otherString));
         }
 
+        /// <summary>
+        /// Returns the <see cref="TypeCode" /> for this instance
+        /// </summary>
+        /// <returns> The <see cref="TypeCode.Object" /> constant </returns>
         TypeCode IConvertible.GetTypeCode()
         {
             return TypeCode.Object;
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent <see cref="bool" /> value using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A <see cref="bool" /> value equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToBoolean" /> implementation of <see cref="string" /> type </remarks>
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToBoolean(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent unsigned 8-bit integer using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> An unsigned 8-bit integer equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToByte" /> implementation of <see cref="string" /> type </remarks>
         byte IConvertible.ToByte(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToByte(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent <see cref="char" /> value using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A <see cref="char" /> value equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToChar" /> implementation of <see cref="string" /> type </remarks>
         char IConvertible.ToChar(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToChar(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent <see cref="DateTime" /> value using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A <see cref="DateTime" /> value equivalent to the value of this instance </returns>
+        /// <remarks>
+        /// This method just calls the <see cref="IConvertible.ToDateTime" /> implementation of <see cref="string" />
+        /// type
+        /// </remarks>
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToDateTime(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent <see cref="decimal" /> value using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A <see cref="decimal" /> value equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToDecimal" /> implementation of <see cref="string" /> type </remarks>
         decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToDecimal(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent 64-bit IEEE-754 number using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A 64-bit IEEE-754 number equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToDouble" /> implementation of <see cref="string" /> type </remarks>
         double IConvertible.ToDouble(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToDouble(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent signed 16-bit integer using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A signed 16-bit integer equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToInt16" /> implementation of <see cref="string" /> type </remarks>
         short IConvertible.ToInt16(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToInt16(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent signed 32-bit integer using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A signed 32-bit integer equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToInt32" /> implementation of <see cref="string" /> type </remarks>
         int IConvertible.ToInt32(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToInt32(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent signed 64-bit integer using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A signed 64-bit integer equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToInt64" /> implementation of <see cref="string" /> type </remarks>
         long IConvertible.ToInt64(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToInt64(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent signed 8-bit integer using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A signed 8-bit integer equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToSByte" /> implementation of <see cref="string" /> type </remarks>
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToSByte(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent 32-bit IEEE-754 number using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A 32-bit IEEE-754 number equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToSingle" /> implementation of <see cref="string" /> type </remarks>
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToSingle(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent <see cref="string" /> value using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> A <see cref="string" /> value equivalent to the value of this instance </returns>
+        /// <remarks>
+        /// This method just calls the <see cref="IConvertible.ToString(IFormatProvider)" /> implementation of
+        /// <see cref="string" /> type
+        /// </remarks>
         string IConvertible.ToString(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToString(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an <see cref="object" /> of the specified <see cref="Type" /> that has an
+        /// equivalent value, using the specified culture-specific formatting information
+        /// </summary>
+        /// <param name="conversionType"> The <see cref="Type" /> to which the value of this instance is converted </param>
+        /// <param name="provider"> </param>
+        /// <returns>
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific formatting
+        /// information
+        /// </returns>
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToType(conversionType, provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent unsigned 16-bit integer using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> An unsigned 16-bit integer equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToUInt16" /> implementation of <see cref="string" /> type </remarks>
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToUInt16(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent unsigned 32-bit integer using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> An unsigned 32-bit integer equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToUInt32" /> implementation of <see cref="string" /> type </remarks>
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;
             return baseConvertible.ToUInt32(provider);
         }
 
+        /// <summary>
+        /// Converts the value of this instance to an equivalent unsigned 64-bit integer using the specified culture-specific
+        /// formatting information
+        /// </summary>
+        /// <param name="provider">
+        /// An <see cref="IFormatProvider" /> interface implementation that supplies culture-specific
+        /// formatting information
+        /// </param>
+        /// <returns> An unsigned 64-bit integer equivalent to the value of this instance </returns>
+        /// <remarks> This method just calls the <see cref="IConvertible.ToUInt64" /> implementation of <see cref="string" /> type </remarks>
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
             IConvertible baseConvertible = _baseString;

@@ -45,7 +45,7 @@
     <Compile Include="Core.Collections\IVolatileCollection.cs" />
     <Compile Include="Core.Collections\IVolatileList.cs" />
     <Compile Include="Core.Collections\IVolatileMap.cs" />
-    <Compile Include="Core.Collections\_Extensions_.FixedMap.cs" />
+    <Compile Include="Core.Collections\_Extensions_.IFixedMap.cs" />
     <Compile Include="Core.Dynamic.Classification\AssemblyObjectClass.cs" />
     <Compile Include="Core.Dynamic.Classification\ConstructorMemberClass.cs" />
     <Compile Include="Core.Dynamic.Classification\DynamicObjectClass.cs" />
@@ -93,8 +93,8 @@
     <Compile Include="Core.Localization\ILocalizer.cs" />
     <Compile Include="Core.Localization\IResource.cs" />
     <Compile Include="Core.Localization\IResourceType.cs" />
-    <Compile Include="Core.Localization\_Extensions_.Localizer.cs" />
-    <Compile Include="Core.Localization\_Extensions_.Resource.cs" />
+    <Compile Include="Core.Localization\_Extensions_.ILocalizer.cs" />
+    <Compile Include="Core.Localization\_Extensions_.IResource.cs" />
     <Compile Include="Core._Internal_\Resources.cs" />
     <Compile Include="Core\ContentType.cs" />
     <Compile Include="Core\Guard.cs" />
