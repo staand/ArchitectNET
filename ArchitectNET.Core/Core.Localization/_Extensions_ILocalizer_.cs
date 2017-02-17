@@ -3,7 +3,7 @@ using ArchitectNET.Core._Internal_;
 
 namespace ArchitectNET.Core.Localization
 {
-    public static partial class _Extensions_
+    public static class _Extensions_ILocalizer_
     {
         public static string FormatString(this ILocalizer localizer, ID resourceID, params object[] formatArguments)
         {

@@ -2,13 +2,13 @@
 {
     /// <summary>
     /// Marks the object which has an owner. "Ownership" reflects a relation of aggregation between objects, thus
-    /// <see cref="Owner" /> is mandatory and can't be <see langword="null" />
+    /// <see cref="Owner" /> is mandatory and can't be <see langword="null" />.
     /// </summary>
-    /// <typeparam name="TOwner"> </typeparam>
+    /// <typeparam name="TOwner"> Type of the owner. </typeparam>
     public interface IHasOwner<out TOwner>
     {
         /// <summary>
-        /// Returns the owner of the current instance
+        /// Returns the owner of the current instance.
         /// </summary>
         TOwner Owner { get; }
     }

@@ -33,79 +33,79 @@ namespace ArchitectNET.Core
     public struct ID : IEquatable<ID>, IFormattable
     {
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="byte" /> data type (is equal to <code>typeof(byte)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="byte" /> data type (is equal to <code>typeof(byte)</code>).
         /// </summary>
         private static readonly Type _byteType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="char" /> data type (is equal to <code>typeof(char)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="char" /> data type (is equal to <code>typeof(char)</code>).
         /// </summary>
         private static readonly Type _charType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="Guid" /> data type (is equal to <code>typeof(Guid)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="Guid" /> data type (is equal to <code>typeof(Guid)</code>).
         /// </summary>
         private static readonly Type _guidType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="ID" /> data type (is equal to <code>typeof(ID)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="ID" /> data type (is equal to <code>typeof(ID)</code>).
         /// </summary>
         private static readonly Type _idType;
 
         /// <summary>
         /// Cashed <see cref="Type" /> instance for <see cref="InsensitiveString" /> data type (is equal to
-        /// <code>typeof(InsensitiveString)</code>)
+        /// <code>typeof(InsensitiveString)</code>).
         /// </summary>
         private static readonly Type _insensitiveStringType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="int" /> data type (is equal to <code>typeof(int)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="int" /> data type (is equal to <code>typeof(int)</code>).
         /// </summary>
         private static readonly Type _intType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="long" /> data type (is equal to <code>typeof(long)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="long" /> data type (is equal to <code>typeof(long)</code>).
         /// </summary>
         private static readonly Type _longType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="string" /> data type (is equal to <code>typeof(string)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="string" /> data type (is equal to <code>typeof(string)</code>).
         /// </summary>
         private static readonly Type _ordinalStringType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="sbyte" /> data type (is equal to <code>typeof(sbyte)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="sbyte" /> data type (is equal to <code>typeof(sbyte)</code>).
         /// </summary>
         private static readonly Type _sbyteType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="short" /> data type (is equal to <code>typeof(short)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="short" /> data type (is equal to <code>typeof(short)</code>).
         /// </summary>
         private static readonly Type _shortType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="uint" /> data type (is equal to <code>typeof(ulong)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="uint" /> data type (is equal to <code>typeof(ulong)</code>).
         /// </summary>
         private static readonly Type _uintType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="ulong" /> data type (is equal to <code>typeof(uint)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="ulong" /> data type (is equal to <code>typeof(uint)</code>).
         /// </summary>
         private static readonly Type _ulongType;
 
         /// <summary>
-        /// Cashed <see cref="Type" /> instance for <see cref="ushort" /> data type (is equal to <code>typeof(ushort)</code>)
+        /// Cashed <see cref="Type" /> instance for <see cref="ushort" /> data type (is equal to <code>typeof(ushort)</code>).
         /// </summary>
         private static readonly Type _ushortType;
 
         /// <summary>
-        /// Object representing current instance value. Can be <see langword="null" /> or of one of supported types listed above
+        /// Object representing current instance value. Can be <see langword="null" /> or of one of supported types listed above.
         /// </summary>
         private readonly object _value;
 
         /// <summary>
         /// Initializes all of static fields cashing required <see cref="Type" /> instances (e.g. <see cref="_byteType" />,
-        /// <see cref="_intType" /> etc.)
+        /// <see cref="_intType" /> etc.).
         /// </summary>
         static ID()
         {
@@ -125,9 +125,9 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="byte" />
+        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="byte" />.
         /// </summary>
-        /// <param name="byteValue"> Unsigned 8-bit integer which is to be treated as an identifier </param>
+        /// <param name="byteValue"> Unsigned 8-bit integer which is to be treated as an identifier. </param>
         public ID(byte byteValue)
         {
             _value = byteValue;
@@ -135,15 +135,15 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Initializes new <see cref="ID" /> instance with a value of type <see cref="byte" /> or with a
-        /// <see langword="null" /> value
+        /// <see langword="null" /> value.
         /// </summary>
         /// <param name="nullableByteValue">
         /// Unsigned 8-bit integer which is to be treated as an identifier or
-        /// <see langword="null" /> value
+        /// <see langword="null" /> value.
         /// </param>
         /// <remarks>
         /// If <paramref name="nullableByteValue" /> is null, the initialized instance is treated empty, thus it is equal to
-        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />.
         /// </remarks>
         public ID(byte? nullableByteValue)
         {
@@ -152,15 +152,15 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Initializes new <see cref="ID" /> instance with a value of type <see cref="int" /> or with a
-        /// <see langword="null" /> value
+        /// <see langword="null" /> value.
         /// </summary>
         /// <param name="nullableIntValue">
         /// Signed 32-bit integer which is to be treated as an identifier or
-        /// <see langword="null" /> value
+        /// <see langword="null" /> value.
         /// </param>
         /// <remarks>
         /// If <paramref name="nullableIntValue" /> is null, the initialized instance is treated empty, thus it is equal to
-        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />.
         /// </remarks>
         public ID(int? nullableIntValue)
         {
@@ -168,9 +168,9 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="int" />
+        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="int" />.
         /// </summary>
-        /// <param name="intValue"> Signed 32-bit integer which is to be treated as an identifier </param>
+        /// <param name="intValue"> Signed 32-bit integer which is to be treated as an identifier. </param>
         public ID(int intValue)
         {
             _value = intValue;
@@ -178,15 +178,15 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Initializes new <see cref="ID" /> instance with a value of type <see cref="long" /> or with a
-        /// <see langword="null" /> value
+        /// <see langword="null" /> value.
         /// </summary>
         /// <param name="nullableLongValue">
         /// Signed 64-bit integer which is to be treated as an identifier or
-        /// <see langword="null" /> value
+        /// <see langword="null" /> value.
         /// </param>
         /// <remarks>
         /// If <paramref name="nullableLongValue" /> is null, the initialized instance is treated empty, thus it is equal to
-        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />.
         /// </remarks>
         public ID(long? nullableLongValue)
         {
@@ -194,23 +194,23 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="long" />
+        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="long" />.
         /// </summary>
-        /// <param name="longValue"> Signed 64-bit integer which is to be treated as an identifier </param>
+        /// <param name="longValue"> Signed 64-bit integer which is to be treated as an identifier. </param>
         public ID(long longValue)
         {
             _value = longValue;
         }
 
         /// <summary>
-        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="string" />
+        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="string" />.
         /// </summary>
-        /// <param name="ordinalStringValue"> <see cref="string" /> object which is to be treated as an identifier </param>
+        /// <param name="ordinalStringValue"> <see cref="string" /> object which is to be treated as an identifier. </param>
         /// <remarks>
         /// The initialized instance will behave as ordinal case-sensitive string during equality checks.<br />The
         /// <paramref name="ordinalStringValue" /> is allowed to be <see langword="null" />, in which case the
         /// <see cref="ID" /> instance is treated empty, thus it is equal to <see cref="Empty" /> and it's
-        /// <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// <see cref="IsEmpty" /> property returns <see langword="true" />.
         /// </remarks>
         public ID(string ordinalStringValue)
         {
@@ -218,14 +218,14 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="InsensitiveString" />
+        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="InsensitiveString" />.
         /// </summary>
-        /// <param name="insensitiveStringValue"> <see cref="InsensitiveString" /> object which is to be treated as an identifier </param>
+        /// <param name="insensitiveStringValue"> <see cref="InsensitiveString" /> object which is to be treated as an identifier. </param>
         /// <remarks>
         /// The initialized instance will behave as case-insensitive string during equality checks.<br />The
         /// <paramref name="insensitiveStringValue" /> is allowed to be <see langword="null" />, in which case the
         /// <see cref="ID" /> instance is treated empty, thus it is equal to <see cref="Empty" /> and it's
-        /// <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// <see cref="IsEmpty" /> property returns <see langword="true" />.
         /// </remarks>
         public ID(InsensitiveString insensitiveStringValue)
         {
@@ -234,15 +234,15 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Initializes new <see cref="ID" /> instance with a value of type <see cref="Guid" /> or with a
-        /// <see langword="null" /> value
+        /// <see langword="null" /> value.
         /// </summary>
         /// <param name="nullableGuidValue">
         /// Global Unique Identifier (GUID) which is to be treated as an identifier or
-        /// <see langword="null" /> value
+        /// <see langword="null" /> value.
         /// </param>
         /// <remarks>
         /// If <paramref name="nullableGuidValue" /> is null, the initialized instance is treated empty, thus it is equal to
-        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />
+        /// <see cref="Empty" /> and it's <see cref="IsEmpty" /> property returns <see langword="true" />.
         /// </remarks>
         public ID(Guid? nullableGuidValue)
         {
@@ -250,9 +250,9 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="Guid" />
+        /// Initializes new <see cref="ID" /> instance with a value of type <see cref="Guid" />.
         /// </summary>
-        /// <param name="guidValue"> Global Unique Identifier (GUID) which is to be treated as an identifier </param>
+        /// <param name="guidValue"> Global Unique Identifier (GUID) which is to be treated as an identifier. </param>
         public ID(Guid guidValue)
         {
             _value = guidValue;
@@ -260,22 +260,22 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Returns an instance of <see cref="ID" />  which is treated empty. The "emptiness" of an identifier means that
-        /// it has no actual value (value is <see langword="null" />)
+        /// it has no actual value (value is <see langword="null" />).
         /// </summary>
         public static ID Empty => new ID();
 
         /// <summary>
         /// Wraps the given <paramref name="value" /> into <see cref="ID" /> which has it's <see cref="Value" /> equal to the
-        /// passed argument (a conversion to one of supported data types may be automatically performed)
+        /// passed argument (a conversion to one of supported data types may be automatically performed).
         /// </summary>
-        /// <param name="value"> A value which is to be wrapped into a new <see cref="ID" /> instance </param>
+        /// <param name="value"> A value which is to be wrapped into a new <see cref="ID" /> instance. </param>
         /// <returns>
         /// New <see cref="ID" /> instance which has it's <see cref="Value" /> equal to the given
-        /// <paramref name="value" />
+        /// <paramref name="value" />.
         /// </returns>
         /// <remarks>
         /// If the <paramref name="value" /> can't be wrapped into <see cref="ID" /> due to unsupported type, an
-        /// exception will be thrown
+        /// exception is thrown.
         /// </remarks>
         public static ID ByValue(object value)
         {
@@ -290,30 +290,32 @@ namespace ArchitectNET.Core
         /// <summary>
         /// Wraps the given <paramref name="stringValue" /> into <see cref="ID" /> which treats the passed string as a
         /// case-insensitive one. This method is a shortcut to "
-        /// <code>new <see cref="ID" />(new <see cref="InsensitiveString" />(<paramref name="stringValue" />))"</code>
+        /// <code>new <see cref="ID" />(new <see cref="InsensitiveString" />(<paramref name="stringValue" />))"</code>.
         /// </summary>
         /// <param name="stringValue">
         /// A <see cref="string" /> which is to be wrapped into <see cref="ID" /> as a case-insensitive
-        /// string
+        /// string.
         /// </param>
         /// <returns>
         /// New <see cref="ID" /> instance having it's <see cref="Value" /> equal to
-        /// <code>new <see cref="InsensitiveString" />(<paramref name="stringValue" />)</code>
+        /// <code>new <see cref="InsensitiveString" />(<paramref name="stringValue" />)</code>.
         /// </returns>
         public static ID InsensitiveOf(string stringValue)
         {
+            if (stringValue == null)
+                return Empty;
             return new ID(new InsensitiveString(stringValue));
         }
 
         /// <summary>
         /// Determines whether two specified IDs have the same value. Just calls and returns result of the
-        /// <see cref="Equals(ArchitectNET.Core.ID)" /> method
+        /// <see cref="Equals(ArchitectNET.Core.ID)" /> method.
         /// </summary>
-        /// <param name="id1"> The first comparing <see cref="ID" /> </param>
-        /// <param name="id2"> The second comparing <see cref="ID" /> </param>
+        /// <param name="id1"> The first comparing <see cref="ID" />. </param>
+        /// <param name="id2"> The second comparing <see cref="ID" />. </param>
         /// <returns>
         /// <see langword="true" /> if <paramref name="id1" /> is equal to <paramref name="id2" />,
-        /// otherwise <see langword="false" />
+        /// otherwise <see langword="false" />.
         /// </returns>
         public static bool operator ==(ID id1, ID id2)
         {
@@ -322,11 +324,11 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Creates a new <see cref="ID" /> instance which is initialized in the same way as after the call of <see cref="ID" />
-        /// constructor passing <paramref name="nullableByteValue" /> as it's argument
+        /// constructor passing <paramref name="nullableByteValue" /> as it's argument.
         /// </summary>
         /// <param name="nullableByteValue">
         /// Unsigned 8-bit integer or <see langword="null" /> value which is to be converted to
-        /// <see cref="ID" />
+        /// <see cref="ID" />.
         /// </param>
         public static implicit operator ID(byte? nullableByteValue)
         {
@@ -335,9 +337,9 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Creates a new <see cref="ID" /> instance which is initialized in the same way as after the call of <see cref="ID" />
-        /// constructor passing <paramref name="byteValue" /> as it's argument
+        /// constructor passing <paramref name="byteValue" /> as it's argument.
         /// </summary>
-        /// <param name="byteValue"> Unsigned 8-bit integer which is to be converted to <see cref="ID" /> </param>
+        /// <param name="byteValue"> Unsigned 8-bit integer which is to be converted to <see cref="ID" />. </param>
         public static implicit operator ID(byte byteValue)
         {
             return new ID(byteValue);
@@ -345,11 +347,11 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Creates a new <see cref="ID" /> instance which is initialized in the same way as after the call of <see cref="ID" />
-        /// constructor passing <paramref name="nullableIntValue" /> as it's argument
+        /// constructor passing <paramref name="nullableIntValue" /> as it's argument.
         /// </summary>
         /// <param name="nullableIntValue">
         /// Signed 32-bit integer or <see langword="null" /> value which is to be converted to
-        /// <see cref="ID" />
+        /// <see cref="ID" />.
         /// </param>
         public static implicit operator ID(int? nullableIntValue)
         {
@@ -358,9 +360,9 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Creates a new <see cref="ID" /> instance which is initialized in the same way as after the call of <see cref="ID" />
-        /// constructor passing <paramref name="intValue" /> as it's argument
+        /// constructor passing <paramref name="intValue" /> as it's argument.
         /// </summary>
-        /// <param name="intValue"> Signed 32-bit integer which is to be converted to <see cref="ID" /> </param>
+        /// <param name="intValue"> Signed 32-bit integer which is to be converted to <see cref="ID" />. </param>
         public static implicit operator ID(int intValue)
         {
             return new ID(intValue);
@@ -368,11 +370,11 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Creates a new <see cref="ID" /> instance which is initialized in the same way as after the call of <see cref="ID" />
-        /// constructor passing <paramref name="nullableLongValue" /> as it's argument
+        /// constructor passing <paramref name="nullableLongValue" /> as it's argument.
         /// </summary>
         /// <param name="nullableLongValue">
         /// Signed 64-bit integer or <see langword="null" /> value which is to be converted to
-        /// <see cref="ID" />
+        /// <see cref="ID" />.
         /// </param>
         public static implicit operator ID(long? nullableLongValue)
         {
@@ -381,9 +383,9 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Creates a new <see cref="ID" /> instance which is initialized in the same way as after the call of <see cref="ID" />
-        /// constructor passing <paramref name="longValue" /> as it's argument
+        /// constructor passing <paramref name="longValue" /> as it's argument.
         /// </summary>
-        /// <param name="longValue"> Signed 64-bit integer which is to be converted to <see cref="ID" /> </param>
+        /// <param name="longValue"> Signed 64-bit integer which is to be converted to <see cref="ID" />. </param>
         public static implicit operator ID(long longValue)
         {
             return new ID(longValue);
@@ -391,9 +393,9 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Creates a new <see cref="ID" /> instance which is initialized in the same way as after the call of <see cref="ID" />
-        /// constructor passing <paramref name="ordinalStringValue" /> as it's argument
+        /// constructor passing <paramref name="ordinalStringValue" /> as it's argument.
         /// </summary>
-        /// <param name="ordinalStringValue"> Ordinal string which is to be converted to <see cref="ID" /> </param>
+        /// <param name="ordinalStringValue"> Ordinal string which is to be converted to <see cref="ID" />. </param>
         public static implicit operator ID(string ordinalStringValue)
         {
             if (ordinalStringValue == null)
@@ -403,9 +405,9 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Creates a new <see cref="ID" /> instance which is initialized in the same way as after the call of <see cref="ID" />
-        /// constructor passing <paramref name="insensitiveStringValue" /> as it's argument
+        /// constructor passing <paramref name="insensitiveStringValue" /> as it's argument.
         /// </summary>
-        /// <param name="insensitiveStringValue"> Case-insensitive string which is to be converted to <see cref="ID" /> </param>
+        /// <param name="insensitiveStringValue"> Case-insensitive string which is to be converted to <see cref="ID" />. </param>
         public static implicit operator ID(InsensitiveString insensitiveStringValue)
         {
             if (insensitiveStringValue == null)
@@ -415,11 +417,11 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Creates a new <see cref="ID" /> instance which is initialized in the same way as after the call of <see cref="ID" />
-        /// constructor passing <paramref name="nullableGuidValue" /> as it's argument
+        /// constructor passing <paramref name="nullableGuidValue" /> as it's argument.
         /// </summary>
         /// <param name="nullableGuidValue">
         /// Global Unique Identifier or <see langword="null" /> value which is to be converted to
-        /// <see cref="ID" />
+        /// <see cref="ID" />.
         /// </param>
         public static implicit operator ID(Guid? nullableGuidValue)
         {
@@ -428,9 +430,9 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Creates a new <see cref="ID" /> instance which is initialized in the same way as after the call of <see cref="ID" />
-        /// constructor passing <paramref name="guidValue" /> as it's argument
+        /// constructor passing <paramref name="guidValue" /> as it's argument.
         /// </summary>
-        /// <param name="guidValue"> Global Unique Identifier which is to be converted to <see cref="ID" /> </param>
+        /// <param name="guidValue"> Global Unique Identifier which is to be converted to <see cref="ID" />. </param>
         public static implicit operator ID(Guid guidValue)
         {
             return new ID(guidValue);
@@ -438,13 +440,13 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Determines whether two specified IDs have different values. Just calls and returns an inverted result of the
-        /// <see cref="Equals(ArchitectNET.Core.ID)" /> method
+        /// <see cref="Equals(ArchitectNET.Core.ID)" /> method.
         /// </summary>
-        /// <param name="id1"> The first comparing <see cref="ID" /> </param>
-        /// <param name="id2"> The second comparing <see cref="ID" /> </param>
+        /// <param name="id1"> The first comparing <see cref="ID" />. </param>
+        /// <param name="id2"> The second comparing <see cref="ID" />. </param>
         /// <returns>
         /// <see langword="true" /> if <paramref name="id1" /> is NOT equal to <paramref name="id2" />,
-        /// <see langword="false" /> otherwise
+        /// <see langword="false" /> otherwise.
         /// </returns>
         public static bool operator !=(ID id1, ID id2)
         {
@@ -453,16 +455,16 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Tries to wrap the given <paramref name="value" /> into <see cref="ID" /> which has it's <see cref="Value" /> equal to
-        /// the passed argument (a conversion to one of supported data types may be automatically performed)
+        /// the passed argument (a conversion to one of supported data types may be automatically performed).
         /// </summary>
-        /// <param name="value"> A value which is to be wrapped into a new <see cref="ID" /> instance </param>
+        /// <param name="value"> A value which is to be wrapped into a new <see cref="ID" /> instance. </param>
         /// <param name="id">
         /// When this method returns, the <see cref="ID" /> instance having it's <see cref="Value" /> equal to
-        /// the passed value, if the latter has one of supported data types, <see cref="Empty" /> otherwise
+        /// the passed value, if the latter has one of supported data types, <see cref="Empty" /> otherwise.
         /// </param>
         /// <returns>
         /// <see langword="true" /> if the specified <paramref name="value" /> was successfully wrapped into
-        /// <see cref="ID" />, <see langword="false" /> otherwise
+        /// <see cref="ID" />, <see langword="false" /> otherwise.
         /// </returns>
         /// <remarks>
         /// Wrapping process is performed according to the following rules:
@@ -562,7 +564,7 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Returns <see langword="true" /> if this <see cref="ID" /> represents a string (no matter, if ordinal or
-        /// case-insensitive one), otherwise <see langword="false" />
+        /// case-insensitive one), otherwise <see langword="false" />.
         /// </summary>
         public bool IsAnyString
         {
@@ -579,7 +581,7 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Returns <see langword="true" /> if this <see cref="ID" /> represents an unsigned 8-bit integer, otherwise
-        /// <see langword="false" />
+        /// <see langword="false" />.
         /// </summary>
         public bool IsByte
         {
@@ -592,13 +594,13 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Returns <see langword="true" /> if this <see cref="ID" /> has no actual value and is treated empty, otherwise
-        /// <see langword="false" />
+        /// <see langword="false" />.
         /// </summary>
         public bool IsEmpty => _value == null;
 
         /// <summary>
         /// Returns <see langword="true" /> if this <see cref="ID" /> represents a 128-bit global unique idenitifier (ID),
-        /// otherwise <see langword="false" />
+        /// otherwise <see langword="false" />.
         /// </summary>
         public bool IsGuid
         {
@@ -611,7 +613,7 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Returns <see langword="true" /> if this <see cref="ID" /> represents a case-insensitive string (
-        /// <see cref="InsensitiveString" /> instance), otherwise <see langword="false" />
+        /// <see cref="InsensitiveString" /> instance), otherwise <see langword="false" />.
         /// </summary>
         public bool IsInsensitiveString
         {
@@ -624,7 +626,7 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Returns <see langword="true" /> if this <see cref="ID" /> represents a 32-bit signed integer, otherwise
-        /// <see langword="false" />
+        /// <see langword="false" />.
         /// </summary>
         public bool IsInt
         {
@@ -637,7 +639,7 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Returns <see langword="true" /> if this <see cref="ID" /> represents a 64-bit signed integer, otherwise
-        /// <see langword="false" />
+        /// <see langword="false" />.
         /// </summary>
         public bool IsLong
         {
@@ -650,7 +652,7 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Returns <see langword="true" /> if this <see cref="ID" /> represents a number (no matter, if of <see cref="byte" />,
-        /// <see cref="int" /> or <see cref="long" /> type), otherwise <see langword="false" />
+        /// <see cref="int" /> or <see cref="long" /> type), otherwise <see langword="false" />.
         /// </summary>
         public bool IsNumeric
         {
@@ -668,7 +670,7 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Returns <see langword="true" /> if this <see cref="ID" /> represents an ordinal case-sensitive string (standard
-        /// <see cref="string" /> instance), otherwise <see langword="false" />
+        /// <see cref="string" /> instance), otherwise <see langword="false" />.
         /// </summary>
         public bool IsOrdinalString
         {
@@ -680,15 +682,15 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Returns an actual value of this <see cref="ID" />(<see langword="null" /> if empty)
+        /// Returns an actual value of this <see cref="ID" />(<see langword="null" /> if empty).
         /// </summary>
         public object Value => _value;
 
         /// <summary>
-        /// Determines whether this instance and <paramref name="otherID" /> have the same value
+        /// Determines whether this instance and <paramref name="otherID" /> have the same value.
         /// </summary>
-        /// <param name="otherID"> The <see cref="ID" /> instance to compare to this instance </param>
-        /// <returns> <see langword="true" /> if <paramref name="otherID" /> is equal to this instance </returns>
+        /// <param name="otherID"> The <see cref="ID" /> instance to compare to this instance. </param>
+        /// <returns> <see langword="true" /> if <paramref name="otherID" /> is equal to this instance. </returns>
         /// <remarks>
         /// This methods works according to the following rules:
         /// <list type="number">
@@ -767,14 +769,14 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Formats the value of this <see cref="ID" /> using the specified format
+        /// Formats the value of this <see cref="ID" /> using the specified format.
         /// </summary>
-        /// <param name="format"> The format to use or <see langword="null" /> to use the default format </param>
+        /// <param name="format"> The format to use or <see langword="null" /> to use the default format. </param>
         /// <param name="formatProvider">
         /// The provider to use to format the value or <see langword="null" /> to obtain the format
-        /// information from the current locale setting of the operating system
+        /// information from the current locale setting of the operating system.
         /// </param>
-        /// <returns> The value of this <see cref="ID" /> in the specified format </returns>
+        /// <returns> The value of this <see cref="ID" /> in the specified format. </returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
             var value = _value;
@@ -788,12 +790,12 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Determines whether this instance and a specified object, which must also be wrappable into <see cref="ID" /> using
-        /// <see cref="TryGetByValue" /> method, have the same value
+        /// <see cref="TryGetByValue" /> method, have the same value.
         /// </summary>
-        /// <param name="otherObject"> The object to compare to this instance </param>
+        /// <param name="otherObject"> The object to compare to this instance. </param>
         /// <returns>
         /// <see langword="true" /> if <paramref name="otherObject" /> is wrappable into <see cref="ID" /> and its value is
-        /// the same as this instance, otherwise <see langword="false" />
+        /// the same as this instance, otherwise <see langword="false" />.
         /// </returns>
         public override bool Equals(object otherObject)
         {
@@ -803,9 +805,9 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Returns a hash code of this <see cref="ID" />
+        /// Returns a hash code of this <see cref="ID" />.
         /// </summary>
-        /// <returns> A 32-bit signed integer hash code </returns>
+        /// <returns> A 32-bit signed integer hash code. </returns>
         public override int GetHashCode()
         {
             var value = _value;
@@ -815,10 +817,10 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Returns the string representation of this <see cref="ID" />
+        /// Returns the string representation of this <see cref="ID" />.
         /// </summary>
         /// <returns>
-        /// <see cref="string" /> object representing this instance
+        /// <see cref="string" /> object representing this instance.
         /// </returns>
         public override string ToString()
         {
@@ -831,11 +833,11 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Tries to extract a <see cref="string" /> from this <see cref="ID" />. This is possible if and only if
-        /// <see cref="IsAnyString" /> returns <see langword="true" />
+        /// <see cref="IsAnyString" /> returns <see langword="true" />.
         /// </summary>
         /// <returns>
         /// This instance's value converted to <see cref="string" /> if <see cref="IsAnyString" /> is
-        /// <see langword="true" />, otherwise <see langword="false" />
+        /// <see langword="true" />, otherwise <see langword="false" />.
         /// </returns>
         public string TryExtractString()
         {

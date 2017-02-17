@@ -4,7 +4,7 @@ using ArchitectNET.Core._Internal_;
 
 namespace ArchitectNET.Core.Localization
 {
-    public static partial class _Extensions_
+    public static class _Extensions_IResource_
     {
         public static string ExtractString(this IResource resource)
         {

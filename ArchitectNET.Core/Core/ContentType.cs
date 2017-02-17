@@ -3,103 +3,103 @@
 namespace ArchitectNET.Core
 {
     /// <summary>
-    /// Lightweight representation of content type according to ultimately simplified MIME specification
+    /// Lightweight representation of content type according to ultimately simplified MIME specification.
     /// </summary>
     public struct ContentType : IEquatable<ContentType>
     {
         /// <summary>
-        /// Backing field for <see cref="Bitmap" /> static property
+        /// Backing field for <see cref="Bitmap" /> static property.
         /// </summary>
         private static readonly ContentType _bitmap;
 
         /// <summary>
-        /// Backing field for <see cref="GIF" /> static property
+        /// Backing field for <see cref="GIF" /> static property.
         /// </summary>
         private static readonly ContentType _gif;
 
         /// <summary>
-        /// Backing field for <see cref="GZIP" /> static property
+        /// Backing field for <see cref="GZIP" /> static property.
         /// </summary>
         private static readonly ContentType _gzip;
 
         /// <summary>
-        /// Backing field for <see cref="Icon" /> static property
+        /// Backing field for <see cref="Icon" /> static property.
         /// </summary>
         private static readonly ContentType _icon;
 
         /// <summary>
-        /// Backing field for <see cref="JPEG" /> static property
+        /// Backing field for <see cref="JPEG" /> static property.
         /// </summary>
         private static readonly ContentType _jpeg;
 
         /// <summary>
-        /// Backing field for <see cref="MP3" /> static property
+        /// Backing field for <see cref="MP3" /> static property.
         /// </summary>
         private static readonly ContentType _mp3;
 
         /// <summary>
-        /// Backing field for <see cref="Object" /> static property
+        /// Backing field for <see cref="Object" /> static property.
         /// </summary>
         private static readonly ContentType _object;
 
         /// <summary>
-        /// Backing field for <see cref="OGG" /> static property
+        /// Backing field for <see cref="OGG" /> static property.
         /// </summary>
         private static readonly ContentType _ogg;
 
         /// <summary>
-        /// Backing field for <see cref="PDF" /> static property
+        /// Backing field for <see cref="PDF" /> static property.
         /// </summary>
         private static readonly ContentType _pdf;
 
         /// <summary>
-        /// Backing field for <see cref="PlainText" /> static property
+        /// Backing field for <see cref="PlainText" /> static property.
         /// </summary>
         private static readonly ContentType _plainText;
 
         /// <summary>
-        /// Backing field for <see cref="PNG" /> static property
+        /// Backing field for <see cref="PNG" /> static property.
         /// </summary>
         private static readonly ContentType _png;
 
         /// <summary>
-        /// Backing field for <see cref="SVG" /> static property
+        /// Backing field for <see cref="SVG" /> static property.
         /// </summary>
         private static readonly ContentType _svg;
 
         /// <summary>
-        /// Backing field for <see cref="TIFF" /> static property
+        /// Backing field for <see cref="TIFF" /> static property.
         /// </summary>
         private static readonly ContentType _tiff;
 
         /// <summary>
-        /// Backing field for <see cref="WAV" /> static property
+        /// Backing field for <see cref="WAV" /> static property.
         /// </summary>
         private static readonly ContentType _wav;
 
         /// <summary>
-        /// Backing field for <see cref="XAML" /> static property
+        /// Backing field for <see cref="XAML" /> static property.
         /// </summary>
         private static readonly ContentType _xaml;
 
         /// <summary>
-        /// Backing field for <see cref="ZIP" /> static property
+        /// Backing field for <see cref="ZIP" /> static property.
         /// </summary>
         private static readonly ContentType _zip;
 
         /// <summary>
-        /// Backing field for <see cref="MediaSubtype" /> property
+        /// Backing field for <see cref="MediaSubtype" /> property.
         /// </summary>
         private readonly string _mediaSubtype;
 
         /// <summary>
-        /// Backing field for <see cref="MediaType" /> property
+        /// Backing field for <see cref="MediaType" /> property.
         /// </summary>
         private readonly string _mediaType;
 
         /// <summary>
         /// Initializes all of static backing fields for some predefined content types
-        /// (e.g. JPEG, PDF etc.)
+        /// (e.g. JPEG, PDF etc.).
         /// </summary>
         static ContentType()
         {
@@ -122,10 +122,10 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="ContentType" />
+        /// Initializes a new instance of <see cref="ContentType" />.
         /// </summary>
-        /// <param name="mediaType"> Media type name </param>
-        /// <param name="mediaSubtype"> Media subtype name </param>
+        /// <param name="mediaType"> Media type name. </param>
+        /// <param name="mediaSubtype"> Media subtype name. </param>
         public ContentType(string mediaType, string mediaSubtype)
         {
             Guard.ArgumentNotNull(mediaType, nameof(mediaType));
@@ -135,102 +135,102 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Predefined content type for Windows Bitmap (*.BMP) image file ("image/bmp")
+        /// Predefined content type for Windows Bitmap (*.BMP) image file ("image/bmp").
         /// </summary>
         public static ContentType Bitmap => _bitmap;
 
         /// <summary>
-        /// Special value meaning "unknown content type"
+        /// Special value meaning "unknown content type".
         /// </summary>
         public static ContentType Empty => new ContentType();
 
         /// <summary>
-        /// Predefined content type for Graphics Interchange Format (*.GIF) image file ("image/png")
+        /// Predefined content type for Graphics Interchange Format (*.GIF) image file ("image/png").
         /// </summary>
         public static ContentType GIF => _gif;
 
         /// <summary>
-        /// Predefined content type for GNU ZIP (*.GZIP) archive file ("application/gzip")
+        /// Predefined content type for GNU ZIP (*.GZIP) archive file ("application/gzip").
         /// </summary>
         public static ContentType GZIP => _gzip;
 
         /// <summary>
-        /// Predefined content type for Windows Icon (*.ICO) file ("image/x-icon")
+        /// Predefined content type for Windows Icon (*.ICO) file ("image/x-icon").
         /// </summary>
         public static ContentType Icon => _icon;
 
         /// <summary>
-        /// Predefined content type for JFIF (*.JPEG, *.JPG) image file ("image/jpeg")
+        /// Predefined content type for JFIF (*.JPEG, *.JPG) image file ("image/jpeg").
         /// </summary>
         public static ContentType JPEG => _jpeg;
 
         /// <summary>
-        /// Predefined content type for MP3 (*.MP3) audio file ("audio/mp3")
+        /// Predefined content type for MP3 (*.MP3) audio file ("audio/mp3").
         /// </summary>
         public static ContentType MP3 => _mp3;
 
         /// <summary>
-        /// Special non-standard content type for plain CLR object of any type ("application/x-clr-object")
+        /// Special non-standard content type for plain CLR object of any type ("application/x-clr-object").
         /// </summary>
         public static ContentType Object => _object;
 
         /// <summary>
-        /// Predefined content type for OGG (*.OGG, *.OGV, *.OGA, *.OGX, *.SPX, *.OPUS, *.OGM) audio file ("application/ogg")
+        /// Predefined content type for OGG (*.OGG, *.OGV, *.OGA, *.OGX, *.SPX, *.OPUS, *.OGM) audio file ("application/ogg").
         /// </summary>
         public static ContentType OGG => _ogg;
 
         /// <summary>
         /// Predefined content type for Portable Document Format (*.PDF) file
-        /// ("application/pdf")
+        /// ("application/pdf").
         /// </summary>
         public static ContentType PDF => _pdf;
 
         /// <summary>
-        /// Predefined content type for plain text content ("text/plain")
+        /// Predefined content type for plain text content ("text/plain").
         /// </summary>
         public static ContentType PlainText => _plainText;
 
         /// <summary>
         /// Predefined content type for Portable Network Graphics (*.PNG) image file
-        /// ("image/png")
+        /// ("image/png").
         /// </summary>
         public static ContentType PNG => _png;
 
         /// <summary>
         /// Predefined content type for Scalable Vector Graphics (*.SVG) file
-        /// ("image/svg+xml")
+        /// ("image/svg+xml").
         /// </summary>
         public static ContentType SVG => _svg;
 
         /// <summary>
-        /// Predefined content type for Tag Image File Format (*.TIFF) image file ("image/tiff")
+        /// Predefined content type for Tag Image File Format (*.TIFF) image file ("image/tiff").
         /// </summary>
         public static ContentType TIFF => _tiff;
 
         /// <summary>
-        /// Predefined content type for WAVE (*.WAV) audio file ("audio/x-wav")
+        /// Predefined content type for WAVE (*.WAV) audio file ("audio/x-wav").
         /// </summary>
         public static ContentType WAV => _wav;
 
         /// <summary>
-        /// Predefined content type for Extensible Application Markup Language (*.XAML) file ("application/xaml+xml")
+        /// Predefined content type for Extensible Application Markup Language (*.XAML) file ("application/xaml+xml").
         /// </summary>
         public static ContentType XAML => _xaml;
 
         /// <summary>
-        /// Predefined content type for ZIP (*.ZIP) archive file ("application/zip")
+        /// Predefined content type for ZIP (*.ZIP) archive file ("application/zip").
         /// </summary>
         public static ContentType ZIP => _zip;
 
         /// <summary>
         /// Determines whether two specified content types have the same value. Just calls and returns result of the
-        /// <see cref="Equals(ContentType)" /> method
+        /// <see cref="Equals(ContentType)" /> method.
         /// </summary>
-        /// <param name="contentType1"> The first comparing <see cref="ContentType" /> </param>
-        /// <param name="contentType2"> The second comparing <see cref="ContentType" /> </param>
+        /// <param name="contentType1"> The first comparing <see cref="ContentType" />. </param>
+        /// <param name="contentType2"> The second comparing <see cref="ContentType" />. </param>
         /// <returns>
         /// <see langword="true" /> if <paramref name="contentType1" /> is equal to <paramref name="contentType2" />, otherwise
-        /// <see langword="false" />
+        /// <see langword="false" />.
         /// </returns>
         public static bool operator ==(ContentType contentType1, ContentType contentType2)
         {
@@ -239,13 +239,13 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Determines whether two specified content types have different values. Just calls and returns an inverted result of the
-        /// <see cref="Equals(ContentType)" /> method
+        /// <see cref="Equals(ContentType)" /> method.
         /// </summary>
-        /// <param name="contentType1"> The first comparing <see cref="ContentType" /> </param>
-        /// <param name="contentType2"> The second comparing <see cref="ContentType" /> </param>
+        /// <param name="contentType1"> The first comparing <see cref="ContentType" />. </param>
+        /// <param name="contentType2"> The second comparing <see cref="ContentType" />. </param>
         /// <returns>
         /// <see langword="true" /> if <paramref name="contentType1" /> is NOT equal to <paramref name="contentType2" /> otherwise
-        /// <see langword="false" />
+        /// <see langword="false" />.
         /// </returns>
         public static bool operator !=(ContentType contentType1, ContentType contentType2)
         {
@@ -254,28 +254,28 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Returns <see langword="true" /> if this instance reperesents an unknown content type, otherwise
-        /// <see langword="false" />
+        /// <see langword="false" />.
         /// </summary>
         public bool IsEmpty => _mediaType == null || _mediaSubtype == null;
 
         /// <summary>
-        /// Returns media subtype name
+        /// Returns media subtype name.
         /// </summary>
         public string MediaSubtype => _mediaSubtype;
 
         /// <summary>
-        /// Returns media type name
+        /// Returns media type name.
         /// </summary>
         public string MediaType => _mediaType;
 
         /// <summary>
-        /// Determines whether this instance and <paramref name="otherContentType" /> have the same value
+        /// Determines whether this instance and <paramref name="otherContentType" /> have the same value.
         /// </summary>
-        /// <param name="otherContentType"> The <see cref="ContentType" /> instance to compare to this instance </param>
-        /// <returns> <see langword="true" /> if <paramref name="otherContentType" /> is equal to this instance </returns>
+        /// <param name="otherContentType"> The <see cref="ContentType" /> instance to compare to this instance. </param>
+        /// <returns> <see langword="true" /> if <paramref name="otherContentType" /> is equal to this instance. </returns>
         /// <remarks>
         /// Current implementation performas CASE-INSENSITIVE comparison for <see cref="MediaType" /> and
-        /// <see cref="MediaSubtype" /> properties
+        /// <see cref="MediaSubtype" /> properties.
         /// </remarks>
         public bool Equals(ContentType otherContentType)
         {
@@ -294,12 +294,12 @@ namespace ArchitectNET.Core
 
         /// <summary>
         /// Determines whether this instance and a specified object, which must also be a <see cref="ContentType" /> object, have
-        /// the same value
+        /// the same value.
         /// </summary>
-        /// <param name="otherObject"> The object to compare to this instance </param>
+        /// <param name="otherObject"> The object to compare to this instance. </param>
         /// <returns>
         /// <see langword="true" /> if <paramref name="otherObject" /> is a <see cref="ContentType" /> and its value is
-        /// the same as this instance, otherwise <see langword="false" />
+        /// the same as this instance, otherwise <see langword="false" />.
         /// </returns>
         public override bool Equals(object otherObject)
         {
@@ -309,9 +309,9 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Returns a hash code of this <see cref="ContentType" />
+        /// Returns a hash code of this <see cref="ContentType" />.
         /// </summary>
-        /// <returns> A 32-bit signed integer hash code </returns>
+        /// <returns> A 32-bit signed integer hash code. </returns>
         public override int GetHashCode()
         {
             var mediaType = _mediaType;
@@ -323,11 +323,11 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Returns the string representation of this <see cref="ContentType" />
+        /// Returns the string representation of this <see cref="ContentType" />.
         /// </summary>
         /// <returns>
         /// <see cref="string" /> object representing this instance. Returned <see cref="string" /> is always a valid
-        /// MIME-specifier
+        /// MIME-specifier.
         /// </returns>
         public override string ToString()
         {
