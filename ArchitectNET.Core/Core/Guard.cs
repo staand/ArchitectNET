@@ -24,7 +24,7 @@ namespace ArchitectNET.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ArgumentNotNull<TValue>(TValue value, string parameterName)
         {
-            if (value == null)
+            if (value == null) //-V3111
                 ThrowArgumentNullException(parameterName);
         }
 
