@@ -1,6 +1,6 @@
 namespace ArchitectNET.Core.Dynamic.Classification
 {
-    public class DynamicRuntimeObjectClass : DynamicObjectClass
+    public class DynamicRuntimeClass : DynamicClass
     {
         public override string ToString()
         {

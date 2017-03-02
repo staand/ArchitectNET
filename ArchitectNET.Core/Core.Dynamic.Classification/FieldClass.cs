@@ -1,10 +1,10 @@
 ﻿namespace ArchitectNET.Core.Dynamic.Classification
 {
-    public class PropertyMemberClass : MemberObjectClass
+    public class FieldClass : MemberClass
     {
         public override string ToString()
         {
-            return "Property";
+            return "Field";
         }
     }
 }

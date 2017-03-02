@@ -2,6 +2,6 @@
 {
     public interface IDynamicObject : IDynamicRuntimeAware, IHasName
     {
-        IDynamicObjectClass Class { get; }
+        IDynamicClass Class { get; }
     }
 }

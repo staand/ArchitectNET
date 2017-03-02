@@ -1,10 +1,10 @@
 ﻿namespace ArchitectNET.Core.Dynamic.Classification
 {
-    public class ParameterObjectClass : DynamicObjectClass
+    public class MemberClass : DynamicClass
     {
         public override string ToString()
         {
-            return "Parameter";
+            return "Member";
         }
     }
 }

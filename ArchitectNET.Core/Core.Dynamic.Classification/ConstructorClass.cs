@@ -1,6 +1,6 @@
 ﻿namespace ArchitectNET.Core.Dynamic.Classification
 {
-    public class ConstructorMemberClass : MemberObjectClass
+    public class ConstructorClass : MemberClass
     {
         public override string ToString()
         {

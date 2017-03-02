@@ -121,7 +121,7 @@
     <value>Can't retrieve localized resource with ID "{0}" and locale "{1}"</value>
   </data>
   <data name="13C139FA-3F87-41A5-94DA-0B34D4686D7E" xml:space="preserve">
-    <value />
+    <value>Can't retrieve runtime object holded by '{0}' because the latter doesn't belong to '{1}' cass</value>
   </data>
   <data name="17CEEEC2-89D6-461F-A877-A2C7A25182E6" xml:space="preserve">
     <value>Argument value for parameter "{0}" is null which is disallowed by contract</value>

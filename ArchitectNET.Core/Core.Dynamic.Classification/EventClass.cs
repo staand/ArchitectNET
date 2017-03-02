@@ -1,10 +1,10 @@
 ﻿namespace ArchitectNET.Core.Dynamic.Classification
 {
-    public class TypeParameterTypeClass : TypeMemberClass
+    public class EventClass : MemberClass
     {
         public override string ToString()
         {
-            return "TypeParameter";
+            return "Event";
         }
     }
 }

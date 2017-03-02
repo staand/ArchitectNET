@@ -1,10 +1,10 @@
 ﻿namespace ArchitectNET.Core.Dynamic.Classification
 {
-    public class AssemblyObjectClass : DynamicObjectClass
+    public class InternalMemberClass : MemberAccessClass
     {
         public override string ToString()
         {
-            return "Assembly";
+            return "Internal";
         }
     }
 }
