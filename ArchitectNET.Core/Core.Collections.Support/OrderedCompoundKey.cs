@@ -234,7 +234,6 @@ namespace ArchitectNET.Core.Collections.Support
             var elements = _elements;
             if (maximumCount < 0)
                 maximumCount = elements.Length - startIndex;
-            var elementCount = elements.Length;
             var endIndex = startIndex + maximumCount;
             for (var i = startIndex; i < endIndex; i++)
             {
