@@ -39,6 +39,8 @@
     <Compile Include="Core.Collections.Support\DictionaryMap.cs" />
     <Compile Include="Core.Collections.Support\HashSetCollection.cs" />
     <Compile Include="Core.Collections.Support\ListCollection.cs" />
+    <Compile Include="Core.Collections.Support\OrderedCompoundKey.cs" />
+    <Compile Include="Core.Collections.Support\UnorderedCompoundKey.cs" />
     <Compile Include="Core.Collections\IFixedCollection.cs" />
     <Compile Include="Core.Collections\IFixedList.cs" />
     <Compile Include="Core.Collections\IFixedMap.cs" />

@@ -49,7 +49,7 @@ namespace ArchitectNET.Core.Collections.Support
         }
 
         /// <summary>
-        /// Gets the number of items currently contained in the collection.
+        /// Gets the number of items currently contained in the list.
         /// </summary>
         int IFixedCollection<TItem>.Count => Count;
 

@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using ArchitectNET.Core;
+using ArchitectNET.Core.Collections.Support;
+using ArchitectNET.Core.Dynamic;
 using static System.Console;
 
 namespace ArchitectNET.TestConsole
@@ -8,16 +10,15 @@ namespace ArchitectNET.TestConsole
     {
         static void Main(string[] args)
         {
-            const int n = 1000000000;
-            var sw = new Stopwatch();
-            sw.Start();
-            for (var i = 0; i < n; i++)
-            {
-                Guard.ArgumentNotNull(args, nameof(args));
-            }
-            sw.Stop();
-            WriteLine(sw.ElapsedTicks);
-            WriteLine(sw.ElapsedTicks / (double) n);
+            var key1 = new UnorderedCompoundKey<int>(1, 2, 3, 4, 5);
+            var key2 = new UnorderedCompoundKey<int>(1, 2, 4, 5, 3);
+            var key3 = new UnorderedCompoundKey<int>(1, 2, 3, 4, 6);
+
+            var b1 = key1.Equals(key2);
+            var b2 = key2.Equals(key3);
+
+            IType x = null;
+            var b = x.IsInt64();
         }
     }
 }
