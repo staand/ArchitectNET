@@ -23,7 +23,7 @@
         /// <param name="item"></param>
         /// <param name="startIndex"></param>
         /// <returns></returns>
-        int IndexOf(TItem item, int startIndex = 0);
+        int IndexOf(TItem item, int startIndex = 0, int maximumCount = -1);
 
         /// <summary>
         /// 
@@ -31,6 +31,6 @@
         /// <param name="item"></param>
         /// <param name="startIndex"></param>
         /// <returns></returns>
-        int LastIndexOf(TItem item, int startIndex = -1);
+        int LastIndexOf(TItem item, int startIndex = -1, int maximumCount = -1);
     }
 }
