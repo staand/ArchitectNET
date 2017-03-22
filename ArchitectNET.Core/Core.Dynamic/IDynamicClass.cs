@@ -1,9 +1,6 @@
-﻿using System;
-
-namespace ArchitectNET.Core.Dynamic
+﻿namespace ArchitectNET.Core.Dynamic
 {
-    public interface IDynamicClass : IMetadata, IEquatable<IDynamicClass>
+    public interface IDynamicClass : IClasslikeMetadata<IDynamicClass>
     {
-        bool IsSubclassOf(IDynamicClass otherClass);
     }
 }

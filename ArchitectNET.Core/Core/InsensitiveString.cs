@@ -681,7 +681,7 @@ namespace ArchitectNET.Core
         }
 
         /// <summary>
-        /// Determines whether this instance and a specified object, which be of <see cref="string" /> or
+        /// Determines whether this instance and a specified object, which should be of <see cref="string" /> or
         /// <see cref="InsensitiveString" /> type, have the same value.
         /// </summary>
         /// <param name="otherObject"> The object to compare to this instance. </param>

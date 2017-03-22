@@ -113,6 +113,7 @@
     <Compile Include="Core._Internal_\Resources.cs" />
     <Compile Include="Core\ContentType.cs" />
     <Compile Include="Core\Guard.cs" />
+    <Compile Include="Core\IClasslikeMetadata.cs" />
     <Compile Include="Core\ID.cs" />
     <Compile Include="Core\IHasAlias.cs" />
     <Compile Include="Core\IHasID.cs" />
