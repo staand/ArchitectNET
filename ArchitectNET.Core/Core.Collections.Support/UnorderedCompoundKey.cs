@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ArchitectNET.Core.Collections.Support
 {
     /// <summary>
     /// Represents an immutable sequence of elements which implements a few specializations of <see cref="IEquatable{T}" />
     /// interface and thus can be used as a compound key in the dictionary. This class is NOT sensitive to order of elements
-    /// during equality check (this means that sequance (a, b, c) is equal to (b, a, c) etc.).
+    /// during equality check but TAKES INTO ACCOUNT duplicates (this means that sequance (a, b, c) is equal
+    /// to (b, a, c) but not equal to (a, b, c, c) etc.).
     /// </summary>
     /// <typeparam name="TElement"> Type of elements which the compound key consists of. </typeparam>
     public sealed class UnorderedCompoundKey<TElement> : IFixedCollection<TElement>,
@@ -16,20 +18,25 @@ namespace ArchitectNET.Core.Collections.Support
                                                          IEquatable<IEnumerable>
     {
         /// <summary>
-        /// A set of elements which this key consists of.
+        /// A dictionary that maps any particular element of the key to number of its occurrences in the initial sequence.
         /// </summary>
-        private readonly HashSet<TElement> _elements;
+        private readonly Dictionary<TElement, int> _elementCountMap;
+
+        /// <summary>
+        /// The number of <see langword="null" /> elements in the initial sequence.
+        /// </summary>
+        private readonly int _nullElementCount;
+
+        /// <summary>
+        /// The number of elements (including <see langword="null" /> ones) in the current key. This value is equal to the number
+        /// of elements in the initial sequence.
+        /// </summary>
+        private readonly int _count;
 
         /// <summary>
         /// Cashed hash code of this instance. Hash code is evaluated during the initialization of the instance.
         /// </summary>
         private readonly int _hashCode;
-
-        /// <summary>
-        /// Determines whether the initial sequence of elements which this instance was created from had at least one
-        /// <see langword="null" /> element.
-        /// </summary>
-        private readonly bool _hasNullElement;
 
         /// <summary>
         /// Initializes a new instance of <see cref="UnorderedCompoundKey{TElement}" /> with the specified elements and equality
@@ -46,20 +53,27 @@ namespace ArchitectNET.Core.Collections.Support
         {
             Guard.ArgumentNotNull(elements, nameof(elements));
             equalityComparer = equalityComparer ?? EqualityComparer<TElement>.Default;
+            var elementCountMap = new Dictionary<TElement, int>(equalityComparer);
+            var count = 0;
+            var nullElementCount = 0;
             var hashCode = 0;
-            var hasNullElement = false;
-            _elements = new HashSet<TElement>(equalityComparer);
             foreach (var element in elements)
             {
-                var isNullElement = element == null;
-                hasNullElement |= isNullElement;
-                if (isNullElement)
+                count++;
+                if (element == null)
+                {
+                    nullElementCount++;
                     continue;
-                _elements.Add(element);
+                }
+                int currentElementCount;
+                elementCountMap.TryGetValue(element, out currentElementCount);
+                elementCountMap[element] = currentElementCount + 1;
                 hashCode ^= element.GetHashCode();
             }
-            _hasNullElement = hasNullElement;
-            _hashCode = hashCode ^ (hasNullElement ? 1 : 0);
+            _elementCountMap = elementCountMap;
+            _count = count;
+            _nullElementCount = nullElementCount;
+            _hashCode = hashCode ^ nullElementCount;
         }
 
         /// <summary>
@@ -67,7 +81,7 @@ namespace ArchitectNET.Core.Collections.Support
         /// </summary>
         /// <param name="elements">
         /// An array of elements which are to be copied to the new instance of
-        /// <see cref="UnorderedCompoundKey{TElement}" />.
+        /// <see cref="UniqueCompoundKey{TElement}" />.
         /// </param>
         public UnorderedCompoundKey(params TElement[] elements)
             : this((IEnumerable<TElement>) elements)
@@ -111,6 +125,11 @@ namespace ArchitectNET.Core.Collections.Support
         }
 
         /// <summary>
+        /// Returns a number of elements in this compound key,
+        /// </summary>
+        public int Count => _count;
+
+        /// <summary>
         /// Returns a non-generic enumerator that iterates through the elements of this compound key.
         /// </summary>
         /// <returns> A non-generic enumerator that can be used to iterate through the elements of this compound key. </returns>
@@ -125,97 +144,16 @@ namespace ArchitectNET.Core.Collections.Support
         /// <returns> A generic enumerator that can be used to iterate through the elements of this compound key. </returns>
         public IEnumerator<TElement> GetEnumerator()
         {
-            return _elements.GetEnumerator();
-        }
-
-        /// <summary>
-        /// Determines whether this instance and a specified sequence of <typeparamref name="TElement" /> have the same value. This
-        /// method DOES NOT take into account the order of elements in the current compound key and in the specified
-        /// <paramref name="otherElements" />.
-        /// </summary>
-        /// <param name="otherElements"> The sequence of elements to compare to this instance. </param>
-        /// <returns>
-        /// <see langword="true" /> if symmetric difference between this instance and <paramref name="otherElements" /> parameter
-        /// returns an empty set; otherwise <see langword="false" />.
-        /// </returns>
-        public bool Equals(IEnumerable<TElement> otherElements)
-        {
-            if (otherElements == null)
-                return false;
-            var otherKey = otherElements as UnorderedCompoundKey<TElement>;
-            if (otherKey != null)
-                return Equals(otherKey);
-            var hasNullElement = _hasNullElement;
-            var hasOtherNullElement = false;
-            var otherElementList = new List<TElement>();
-            foreach (var otherElement in otherElements)
+            foreach (var keyValue in _elementCountMap)
             {
-                var isOtherElementNull = otherElement == null;
-                if (isOtherElementNull && !hasNullElement)
-                    return false;
-                if (!isOtherElementNull)
-                    otherElementList.Add(otherElement);
-                hasOtherNullElement |= isOtherElementNull;
+                var element = keyValue.Key;
+                var count = keyValue.Value;
+                for (var i = 0; i < count; i++)
+                    yield return element;
             }
-            return hasNullElement == hasOtherNullElement
-                   && _elements.SetEquals(otherElementList);
-        }
-
-        /// <summary>
-        /// Determines whether this instance and a specified sequence have the same value. This method DOES NOT take into account
-        /// the order of elements in the current compound key and in the specified <paramref name="otherElements" />.
-        /// </summary>
-        /// <param name="otherElements"> The sequence of objects to compare to this instance. </param>
-        /// <returns>
-        /// <see langword="true" /> if each element of <paramref name="otherElements" /> parameter is convertible to
-        /// <typeparamref name="TElement" /> and symmetric difference between this instance and <paramref name="otherElements" />
-        /// parameter returns an empty set; otherwise <see langword="false" />.
-        /// </returns>
-        public bool Equals(IEnumerable otherElements)
-        {
-            if (otherElements == null)
-                return false;
-            var otherGenericElements = otherElements as IEnumerable<TElement>;
-            if (otherGenericElements != null)
-                return Equals(otherGenericElements);
-            var hasNullElement = _hasNullElement;
-            var hasOtherNullElement = false;
-            var otherElementList = new List<TElement>();
-            foreach (var otherElementObject in otherElements)
-            {
-                var isOtherElementNull = otherElementObject == null;
-                hasOtherNullElement |= isOtherElementNull;
-                if (isOtherElementNull)
-                {
-                    if (!hasNullElement)
-                        return false;
-                    continue;
-                }
-                if (!(otherElementObject is TElement))
-                    return false;
-                var otherElement = (TElement) otherElementObject;
-                otherElementList.Add(otherElement);
-            }
-            return hasNullElement == hasOtherNullElement
-                   && _elements.SetEquals(otherElementList);
-        }
-
-        /// <summary>
-        /// Determines whether this instance and a specified compound key have the same value. This method DOES NOT take into
-        /// account the order of elements in the current compound key and in the specified <paramref name="otherKey" />.
-        /// </summary>
-        /// <param name="otherKey"> The compound key to compare to this instance. </param>
-        /// <returns>
-        /// <see langword="true" /> if symmetric difference between this instance and <paramref name="otherKey" /> parameter
-        /// returns an empty set; otherwise <see langword="false" />.
-        /// </returns>
-        public bool Equals(UnorderedCompoundKey<TElement> otherKey)
-        {
-            return otherKey != null
-                   && _hashCode == otherKey._hashCode
-                   && _hasNullElement == otherKey._hasNullElement
-                   && _elements.Count == otherKey._elements.Count
-                   && _elements.SetEquals(otherKey._elements);
+            var nullElementCount = _nullElementCount;
+            for (var i = 0; i < nullElementCount; i++)
+                yield return (TElement) (object) null;
         }
 
         /// <summary>
@@ -229,14 +167,168 @@ namespace ArchitectNET.Core.Collections.Support
         public bool Contains(TElement element)
         {
             if (element == null)
-                return _hasNullElement;
-            return _elements.Contains(element);
+                return _nullElementCount > 0;
+            return _elementCountMap.ContainsKey(element);
         }
 
         /// <summary>
-        /// Returns a number of elements in this compound key,
+        /// Determines whether this instance and a specified compound key have the same value. This method IS NOT sensitive to the
+        /// order of elements in the current compound key and in the specified <paramref name="otherKey" /> but TAKES INTO ACCOUNT
+        /// element duplicates.
         /// </summary>
-        public int Count => _elements.Count;
+        /// <param name="otherKey"> The compound key to compare to this instance. </param>
+        /// <returns>
+        /// <see langword="true" /> if number of occurrences of each distinct element in the current instance is the same as in the
+        /// <paramref name="otherKey" /> parameter and vice versa; otherwise <see langword="false" />.
+        /// </returns>
+        public bool Equals(UnorderedCompoundKey<TElement> otherKey)
+        {
+            var isExactlyDifferent = otherKey == null
+                                     || _hashCode != otherKey._hashCode
+                                     || _nullElementCount != otherKey._nullElementCount
+                                     || _count != otherKey._count
+                                     || _elementCountMap.Count != otherKey._elementCountMap.Count;
+            if (isExactlyDifferent)
+                return false;
+            var otherElementCountMap = otherKey._elementCountMap;
+            foreach (var keyValue in _elementCountMap)
+            {
+                var element = keyValue.Key;
+                var count = keyValue.Value;
+                int otherCount;
+                if (!otherElementCountMap.TryGetValue(element, out otherCount)
+                    || count != otherCount)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Determines whether this instance and a specified sequence of <typeparamref name="TElement" /> have the same value. This
+        /// method IS NOT sensitive to the order of elements in the current compound key and in the specified
+        /// <paramref name="otherElements" /> but TAKES INTO ACCOUNT element duplicates.
+        /// </summary>
+        /// <param name="otherElements"> The sequence of elements to compare to this instance. </param>
+        /// <returns>
+        /// <see langword="true" /> if number of occurrences of each distinct element in the current key is the same as
+        /// in the <paramref name="otherElements" /> parameter and vice versa; otherwise <see langword="false" />.
+        /// </returns>
+        public bool Equals(IEnumerable<TElement> otherElements)
+        {
+            if (otherElements == null)
+                return false;
+            var otherKey = otherElements as UnorderedCompoundKey<TElement>;
+            if (otherKey != null)
+                return Equals(otherKey);
+            var nullElementCount = _nullElementCount;
+            var elementCountMap = _elementCountMap;
+            var otherElementCountMap = new Dictionary<TElement, int>(elementCountMap.Comparer);
+            var otherNullElementCount = 0;
+            var otherElementCount = 0;
+            foreach (var otherElement in otherElements)
+            {
+                otherElementCount++;
+                if (otherElement == null)
+                {
+                    if (otherNullElementCount >= nullElementCount)
+                        return false;
+                    otherNullElementCount++;
+                    continue;
+                }
+                int count;
+                if (!elementCountMap.TryGetValue(otherElement, out count))
+                    return false;
+                int otherCount;
+                otherElementCountMap.TryGetValue(otherElement, out otherCount);
+                if (otherCount >= count)
+                    return false;
+                otherElementCountMap[otherElement] = otherCount + 1;
+            }
+            if (nullElementCount != otherNullElementCount
+                || _count != otherElementCount)
+            {
+                return false;
+            }
+            foreach (var keyValue in elementCountMap)
+            {
+                var element = keyValue.Key;
+                var count = keyValue.Value;
+                int otherCount;
+                if (!otherElementCountMap.TryGetValue(element, out otherCount)
+                    || count != otherCount)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Determines whether this instance and a specified sequence have the same value. This method IS NOT sensitive to the
+        /// order of elements in the current compound key and in the specified <paramref name="otherElements" /> but TAKES INTO
+        /// ACCOUNT element duplicates.
+        /// </summary>
+        /// <param name="otherElements"> The sequence of objects to compare to this instance. </param>
+        /// <returns>
+        /// if each element of <paramref name="otherElements" /> parameter is convertible to
+        /// <typeparamref name="TElement" /> and number of occurrences of each distinct element in the current key is the same as
+        /// in the <paramref name="otherElements" /> parameter and vice versa; otherwise <see langword="false" />.
+        /// </returns>
+        public bool Equals(IEnumerable otherElements)
+        {
+            if (otherElements == null)
+                return false;
+            var otherGenericElements = otherElements as IEnumerable<TElement>;
+            if (otherGenericElements != null)
+                return Equals(otherGenericElements);
+            var otherElementList = new List<TElement>();
+            var elementCountMap = _elementCountMap;
+            var nullElementCount = _nullElementCount;
+            var otherNullElementCount = 0;
+            foreach (var otherElementObject in otherElements)
+            {
+                if (otherElementObject == null)
+                {
+                    if (otherNullElementCount >= nullElementCount)
+                        return false;
+                    otherNullElementCount++;
+                    otherElementList.Add((TElement) (object) null);
+                    continue;
+                }
+                if (!(otherElementObject is TElement))
+                    return false;
+                var otherElement = (TElement) otherElementObject;
+                if (!elementCountMap.ContainsKey(otherElement))
+                    return false;
+                otherElementList.Add(otherElement);
+            }
+            return nullElementCount == otherNullElementCount
+                   && Equals(otherElementList);
+        }
+
+        /// <summary>
+        /// Returns the string representation of this <see cref="UnorderedCompoundKey{TElement}" />.
+        /// </summary>
+        /// <returns>
+        /// <see cref="string" /> object representing this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            var hasNullElements = _nullElementCount > 0;
+            var nullText = hasNullElements ? $", {_nullElementCount} x <null>" : string.Empty;
+            return $"{{{string.Join(", ", _elementCountMap.Select(kv => $"{kv.Key} x {kv.Value}"))}{nullText}}}";
+        }
+
+        /// <summary>
+        /// Returns the hash code for this <see cref="UnorderedCompoundKey{TElement}" />.
+        /// </summary>
+        /// <returns> A 32-bit signed integer hash code. </returns>
+        public override int GetHashCode()
+        {
+            return _hashCode;
+        }
 
         /// <summary>
         /// Determines whether this instance and a specified object, which should be also an
@@ -259,27 +351,6 @@ namespace ArchitectNET.Core.Collections.Support
             var otherElements = otherObject as IEnumerable;
             return otherElements != null
                    && Equals(otherElements);
-        }
-
-        /// <summary>
-        /// Returns the hash code for this <see cref="UnorderedCompoundKey{TElement}" />.
-        /// </summary>
-        /// <returns> A 32-bit signed integer hash code. </returns>
-        public override int GetHashCode()
-        {
-            return _hashCode;
-        }
-
-        /// <summary>
-        /// Returns the string representation of this <see cref="UnorderedCompoundKey{TElement}" />.
-        /// </summary>
-        /// <returns>
-        /// <see cref="string" /> object representing this instance.
-        /// </returns>
-        public override string ToString()
-        {
-            var nullText = _hasNullElement ? "<null>" : string.Empty;
-            return $"{{{string.Join(", ", _elements)}{nullText}}}";
         }
     }
 }

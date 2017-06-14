@@ -6,7 +6,7 @@ namespace ArchitectNET.Core.Dynamic.Classification
     {
         private static readonly IDynamicClass _assemblyClass;
         private static readonly IDynamicClass _constructorClass;
-        private static readonly IDynamicClass _dynamicSystemClass;
+        private static readonly IDynamicClass _dynamicRuntimeClass;
         private static readonly IDynamicClass _eventClass;
         private static readonly IDynamicClass _fieldClass;
         private static readonly IDynamicClass _internalClass;
@@ -26,7 +26,7 @@ namespace ArchitectNET.Core.Dynamic.Classification
 
         static DynamicClass()
         {
-            _dynamicSystemClass = new DynamicRuntimeClass();
+            _dynamicRuntimeClass = new DynamicRuntimeClass();
             _runtimeObjectHolderClass = new RuntimeObjectHolderClass();
             _assemblyClass = new AssemblyClass();
             _moduleClass = new ModuleClass();
@@ -50,7 +50,7 @@ namespace ArchitectNET.Core.Dynamic.Classification
 
         public static IDynamicClass Constructor => _constructorClass;
 
-        public static IDynamicClass DynamicSystem => _dynamicSystemClass;
+        public static IDynamicClass DynamicRuntime => _dynamicRuntimeClass;
 
         public static IDynamicClass Event => _eventClass;
 

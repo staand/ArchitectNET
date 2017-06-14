@@ -37,7 +37,7 @@ namespace ArchitectNET.Core.Dynamic
         public static bool IsDynamicSystem(this IDynamicObject dynamicObject)
         {
             Guard.ArgumentNotNull(dynamicObject, nameof(dynamicObject));
-            return dynamicObject.Class.IsSubclassOf(DynamicClass.DynamicSystem);
+            return dynamicObject.Class.IsSubclassOf(DynamicClass.DynamicRuntime);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

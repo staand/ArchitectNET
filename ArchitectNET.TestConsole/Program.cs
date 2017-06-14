@@ -1,24 +1,52 @@
-﻿using System.Diagnostics;
-using ArchitectNET.Core;
-using ArchitectNET.Core.Collections.Support;
-using ArchitectNET.Core.Dynamic;
-using static System.Console;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.Threading;
+using System.Xml.Linq;
 
 namespace ArchitectNET.TestConsole
 {
     class Program
     {
+        [A]
+        class A : Attribute
+        {
+            
+        }
+
         static void Main(string[] args)
         {
-            var key1 = new UnorderedCompoundKey<int>(1, 2, 3, 4, 5);
-            var key2 = new UnorderedCompoundKey<int>(1, 2, 4, 5, 3);
-            var key3 = new UnorderedCompoundKey<int>(1, 2, 3, 4, 6);
-
-            var b1 = key1.Equals(key2);
-            var b2 = key2.Equals(key3);
-
-            IType x = null;
-            var b = x.IsInt64();
+            try
+            {
+                var c = new StockGet.StockQuoteSoapClient(new BasicHttpBinding(),
+                                                          new EndpointAddress(
+                                                              "http://www.webservicex.net/stockquote.asmx"));
+                try
+                {
+                    ICommunicationObject obj = c;
+                    obj.BeginOpen(
+                        TimeSpan.FromSeconds(5),
+                        async r =>
+                        {
+                            obj.EndOpen(r);
+                            var t = await c.GetQuoteAsync("MA");
+                            var xml = XElement.Parse(t);
+                            Console.WriteLine(xml);
+                        },
+                        null);
+                    Thread.Sleep(30 * 1000);
+                }
+                finally
+                {
+                    c.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
         }
     }
 }
